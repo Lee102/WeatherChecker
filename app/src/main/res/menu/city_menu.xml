@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/cityMenuCurrent"
+            android:title="Current" />
+        <item
+            android:id="@+id/cityMenuDaily"
+            android:title="Daily" />
+        <item
+            android:id="@+id/cityMenuHourly"
+            android:title="Hourly" />
+        <item
+            android:id="@+id/cityMenuMinutely"
+            android:title="Minutely" />
+    </group>
+</menu>
