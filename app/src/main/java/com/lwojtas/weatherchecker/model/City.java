@@ -12,23 +12,23 @@ import java.util.TimeZone;
 
 public class City {
 
-    private final String nameJSON = "name";
+    private final String NAME_JSON = "name";
     private String name;
-    private final String latJSON = "lat";
+    private final String LAT_JSON = "lat";
     private Double lat;
-    private final String lonJSON = "lon";
+    private final String LON_JSON = "lon";
     private Double lon;
-    private final String timezoneJSON = "timezone";
+    private final String TIMEZONE_JSON = "timezone";
     private TimeZone timezone;
-    private final String timezoneOffsetJSON = "timezone_offset";
+    private final String TIMEZONE_OFFSET_JSON = "timezone_offset";
     private Long timezoneOffset;
-    private final String currentJSON = "current";
+    private final String CURRENT_JSON = "current";
     private Current current;
-    private final String minutelyJSON = "minutely";
+    private final String MINUTELY_JSON = "minutely";
     private Minutely minutely;
-    private final String hourlyJSON = "hourly";
+    private final String HOURLY_JSON = "hourly";
     private Hourly hourly;
-    private final String dailyJSON = "daily";
+    private final String DAILY_JSON = "daily";
     private Daily daily;
 
     public City(String name, Double lat, Double lon) {
@@ -38,40 +38,40 @@ public class City {
     }
 
     public City(JSONObject obj) throws JSONException {
-        name = obj.getString(nameJSON);
+        name = obj.getString(NAME_JSON);
         fromJSON(obj);
     }
 
     public void fromJSON(JSONObject obj) throws JSONException {
-        lat = obj.getDouble(latJSON);
-        lon = obj.getDouble(lonJSON);
-        timezone = TimeZone.getTimeZone(obj.getString(timezoneJSON));
-        timezoneOffset = obj.getLong(timezoneOffsetJSON);
-        if (obj.has(currentJSON))
-            current = new Current(obj.getJSONObject(currentJSON), timezoneOffset);
-        if (obj.has(minutelyJSON))
-            minutely = new Minutely(obj.getJSONArray(minutelyJSON), timezoneOffset);
-        if (obj.has(hourlyJSON))
-            hourly = new Hourly(obj.getJSONArray(hourlyJSON), timezoneOffset);
-        if (obj.has(dailyJSON))
-            daily = new Daily(obj.getJSONArray(dailyJSON), timezoneOffset);
+        lat = obj.getDouble(LAT_JSON);
+        lon = obj.getDouble(LON_JSON);
+        timezone = TimeZone.getTimeZone(obj.getString(TIMEZONE_JSON));
+        timezoneOffset = obj.getLong(TIMEZONE_OFFSET_JSON);
+        if (obj.has(CURRENT_JSON))
+            current = new Current(obj.getJSONObject(CURRENT_JSON), timezoneOffset);
+        if (obj.has(MINUTELY_JSON))
+            minutely = new Minutely(obj.getJSONArray(MINUTELY_JSON), timezoneOffset);
+        if (obj.has(HOURLY_JSON))
+            hourly = new Hourly(obj.getJSONArray(HOURLY_JSON), timezoneOffset);
+        if (obj.has(DAILY_JSON))
+            daily = new Daily(obj.getJSONArray(DAILY_JSON), timezoneOffset);
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
-        obj.put(nameJSON, name);
-        obj.put(latJSON, lat);
-        obj.put(lonJSON, lon);
-        obj.put(timezoneJSON, timezone);
-        obj.put(timezoneOffsetJSON, timezoneOffset);
+        obj.put(NAME_JSON, name);
+        obj.put(LAT_JSON, lat);
+        obj.put(LON_JSON, lon);
+        obj.put(TIMEZONE_JSON, timezone);
+        obj.put(TIMEZONE_OFFSET_JSON, timezoneOffset);
         if (current != null)
-            obj.put(currentJSON, current.toJSON(timezoneOffset));
+            obj.put(CURRENT_JSON, current.toJSON(timezoneOffset));
         if (minutely != null)
-            obj.put(minutelyJSON, minutely.toJSON(timezoneOffset));
+            obj.put(MINUTELY_JSON, minutely.toJSON(timezoneOffset));
         if (hourly != null)
-            obj.put(hourlyJSON, hourly.toJSON(timezoneOffset));
+            obj.put(HOURLY_JSON, hourly.toJSON(timezoneOffset));
         if (daily != null)
-            obj.put(dailyJSON, daily.toJSON(timezoneOffset));
+            obj.put(DAILY_JSON, daily.toJSON(timezoneOffset));
         return obj;
     }
 
@@ -122,4 +122,5 @@ public class City {
     public Daily getDaily() {
         return daily;
     }
+
 }

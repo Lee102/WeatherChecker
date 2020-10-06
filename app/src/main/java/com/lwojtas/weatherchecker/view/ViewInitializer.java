@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.lwojtas.weatherchecker.R;
 
-public class ViewInitializer {
+abstract class ViewInitializer {
 
     protected TableLayout buildTableLayout(Context context) {
         TableLayout tableLayout = new TableLayout(context);

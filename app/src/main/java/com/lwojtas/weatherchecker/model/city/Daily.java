@@ -10,25 +10,26 @@ import java.util.List;
 
 public class Daily {
 
-    private final List<DailyValue> values;
+    private final List<DailyValue> VALUES;
 
     public Daily(JSONArray arr, Long timezoneOffset) throws JSONException {
-        values = new LinkedList<>();
+        VALUES = new LinkedList<>();
 
         for (int i = 0; i < arr.length(); i++)
-            values.add(new DailyValue(arr.getJSONObject(i), timezoneOffset));
+            VALUES.add(new DailyValue(arr.getJSONObject(i), timezoneOffset));
     }
 
     public JSONArray toJSON(Long timezoneOffset) throws JSONException {
         JSONArray arr = new JSONArray();
 
-        for (DailyValue val : values)
+        for (DailyValue val : VALUES)
             arr.put(val.toJSON(timezoneOffset));
 
         return arr;
     }
 
-    public List<DailyValue> getValues() {
-        return values;
+    public List<DailyValue> getVALUES() {
+        return VALUES;
     }
+
 }

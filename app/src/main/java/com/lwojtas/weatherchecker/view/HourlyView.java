@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Hourly;
@@ -16,10 +17,10 @@ import java.lang.reflect.Field;
 
 public class HourlyView extends ViewInitializer {
 
-    private final Hourly hourly;
+    private final Hourly HOURLY;
 
     public HourlyView(Hourly hourly) {
-        this.hourly = hourly;
+        this.HOURLY = hourly;
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
@@ -30,15 +31,15 @@ public class HourlyView extends ViewInitializer {
         linearLayout.addView(buildRecordsTable(context));
     }
 
-    private TableLayout buildRecordsTable(final Context context) throws Exception {
-        TableLayout tableLayout = buildTableLayout(context);
+    private TableLayout buildRecordsTable(final Context CONTEXT) throws Exception {
+        TableLayout tableLayout = buildTableLayout(CONTEXT);
 
         boolean even = false;
-        for (HourlyValue val : hourly.getValues()) {
-            TableRow row = buildTableRow(context, false, even);
+        for (HourlyValue val : HOURLY.getVALUES()) {
+            TableRow row = buildTableRow(CONTEXT, false, even);
             row.setTag(val);
 
-            row.addView(buildCollapsedView(context, val));
+            row.addView(buildCollapsedView(CONTEXT, val));
 
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,14 +51,14 @@ public class HourlyView extends ViewInitializer {
                         LinearLayout linearLayout;
 
                         if ((Boolean) row.getChildAt(0).getTag())
-                            linearLayout = buildCollapsedView(context, val);
+                            linearLayout = buildCollapsedView(CONTEXT, val);
                         else
-                            linearLayout = buildExpandedView(context, val);
+                            linearLayout = buildExpandedView(CONTEXT, val);
 
                         row.removeAllViews();
                         row.addView(linearLayout);
                     } catch (Exception e) {
-                        System.err.println(e);
+                        Toast.makeText(v.getContext(), v.getResources().getString(R.string.city_hourly_on_click_error_message), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -85,8 +86,8 @@ public class HourlyView extends ViewInitializer {
 
         row = buildTableRow(context, false, false);
         row.addView(buildTableRowTextView(context, val.getDtAsString("HH:mm")));
-        String rain = "R: ";
-        if (val.getRain1h() != null)
+        String rain = context.getResources().getString(R.string.weather_rain_r) + ": ";
+        if (val.rain1hExists())
             rain += val.getRain1hAsString();
         else
             rain += "-";
@@ -95,8 +96,8 @@ public class HourlyView extends ViewInitializer {
 
         row = buildTableRow(context, false, false);
         row.addView(buildTableRowTextView(context, val.getTempAsString()));
-        String snow = "S: ";
-        if (val.getSnow1h() != null)
+        String snow = context.getResources().getString(R.string.weather_snow_s) + ": ";
+        if (val.snow1hExists())
             snow += val.getSnow1hAsString();
         else
             snow += "-";
@@ -132,7 +133,7 @@ public class HourlyView extends ViewInitializer {
         TableRow row;
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Date:"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_date)));
         row.addView(buildTableRowTextView(context, val.getDtAsString("d-MM-yyyy")));
         tableLayout.addView(row);
 
@@ -150,76 +151,76 @@ public class HourlyView extends ViewInitializer {
         TableRow row;
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Temp"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_temp)));
         row.addView(buildTableRowTextView(context, val.getTempAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Feels Like"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_feels_like)));
         row.addView(buildTableRowTextView(context, val.getFeelsLikeAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Visibility"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_visibility)));
         row.addView(buildTableRowTextView(context, val.getVisibilityAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Pressure"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_pressure)));
         row.addView(buildTableRowTextView(context, val.getPressureAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Humidity"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_humidity)));
         row.addView(buildTableRowTextView(context, val.getHumidityAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Dew Point"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_dew_point)));
         row.addView(buildTableRowTextView(context, val.getDewPointAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Clouds"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_clouds)));
         row.addView(buildTableRowTextView(context, val.getCloudsAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "pop"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_pop)));
         row.addView(buildTableRowTextView(context, val.getPopAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Wind Speed"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_speed)));
         row.addView(buildTableRowTextView(context, val.getWindSpeedAsString()));
         tableLayout.addView(row);
 
         boolean even = true;
-        if (val.getWindGust() != null) {
+        if (val.windGustExists()) {
             row = buildTableRow(context, false, true);
-            row.addView(buildTableRowTextView(context, "Wind Gust"));
+            row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_gust)));
             row.addView(buildTableRowTextView(context, val.getWindGustAsString()));
             tableLayout.addView(row);
             even = false;
         }
 
         row = buildTableRow(context, false, even);
-        row.addView(buildTableRowTextView(context, "Wind Deg"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_deg)));
         row.addView(buildTableRowTextView(context, val.getWindDegAsString()));
         tableLayout.addView(row);
         even = !even;
 
-        if (val.getRain1h() != null) {
+        if (val.rain1hExists()) {
             row = buildTableRow(context, false, even);
-            row.addView(buildTableRowTextView(context, "Rain"));
+            row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_rain)));
             row.addView(buildTableRowTextView(context, val.getRain1hAsString()));
             tableLayout.addView(row);
             even = !even;
         }
 
-        if (val.getSnow1h() != null) {
+        if (val.snow1hExists()) {
             row = buildTableRow(context, false, even);
-            row.addView(buildTableRowTextView(context, "Snow"));
+            row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_snow)));
             row.addView(buildTableRowTextView(context, val.getSnow1hAsString()));
             tableLayout.addView(row);
         }

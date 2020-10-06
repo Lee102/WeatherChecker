@@ -4,15 +4,15 @@
     <group>
         <item
             android:id="@+id/cityMenuCurrent"
-            android:title="Current" />
+            android:title="@string/city_current" />
         <item
             android:id="@+id/cityMenuDaily"
-            android:title="Daily" />
+            android:title="@string/city_daily" />
         <item
             android:id="@+id/cityMenuHourly"
-            android:title="Hourly" />
+            android:title="@string/city_hourly" />
         <item
             android:id="@+id/cityMenuMinutely"
-            android:title="Minutely" />
+            android:title="@string/city_minutely" />
     </group>
 </menu>

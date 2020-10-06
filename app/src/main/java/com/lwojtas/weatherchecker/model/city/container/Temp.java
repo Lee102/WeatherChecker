@@ -1,90 +1,84 @@
 package com.lwojtas.weatherchecker.model.city.container;
 
+import com.lwojtas.weatherchecker.model.AppData;
+import com.lwojtas.weatherchecker.model.Settings;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.lwojtas.weatherchecker.model.city.container.Common.getAsString;
+
 public class Temp {
 
-    private final String dayJSON = "day";
+    private final String DAY_JSON = "day";
     private Double day;
-    private final String minJSON = "min";
+    private final String MIN_JSON = "min";
     private Double min;
-    private final String maxJSON = "max";
+    private final String MAX_JSON = "max";
     private Double max;
-    private final String nightJSON = "night";
+    private final String NIGHT_JSON = "night";
     private Double night;
-    private final String eveJSON = "eve";
+    private final String EVE_JSON = "eve";
     private Double eve;
-    private final String mornJSON = "morn";
+    private final String MORN_JSON = "morn";
     private Double morn;
 
     public Temp(JSONObject obj) throws JSONException {
-        day = obj.getDouble(dayJSON);
-        min = obj.getDouble(minJSON);
-        max = obj.getDouble(maxJSON);
-        night = obj.getDouble(nightJSON);
-        eve = obj.getDouble(eveJSON);
-        morn = obj.getDouble(mornJSON);
+        day = obj.getDouble(DAY_JSON);
+        min = obj.getDouble(MIN_JSON);
+        max = obj.getDouble(MAX_JSON);
+        night = obj.getDouble(NIGHT_JSON);
+        eve = obj.getDouble(EVE_JSON);
+        morn = obj.getDouble(MORN_JSON);
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        obj.put(dayJSON, day);
-        obj.put(minJSON, min);
-        obj.put(maxJSON, max);
-        obj.put(nightJSON, night);
-        obj.put(eveJSON, eve);
-        obj.put(mornJSON, morn);
+        obj.put(DAY_JSON, day);
+        obj.put(MIN_JSON, min);
+        obj.put(MAX_JSON, max);
+        obj.put(NIGHT_JSON, night);
+        obj.put(EVE_JSON, eve);
+        obj.put(MORN_JSON, morn);
 
         return obj;
     }
 
-    public Double getDay() {
-        return day;
-    }
-
     public String getDayAsString() {
-        return String.format("%.2f", day) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getMin() {
-        return min;
+        return getAsString(day, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getMinAsString() {
-        return String.format("%.2f", min) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getMax() {
-        return max;
+        return getAsString(min, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getMaxAsString() {
-        return String.format("%.2f", max) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getNight() {
-        return night;
+        return getAsString(max, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getNightAsString() {
-        return String.format("%.2f", night) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getEve() {
-        return eve;
+        return getAsString(night, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getEveAsString() {
-        return String.format("%.2f", eve) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getMorn() {
-        return morn;
+        return getAsString(eve, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getMornAsString() {
-        return String.format("%.2f", morn) + "°C";
+        Settings settings = AppData.getSettings();
+
+        return getAsString(morn, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
+
 }

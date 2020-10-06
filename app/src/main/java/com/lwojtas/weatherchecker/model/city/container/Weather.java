@@ -5,29 +5,29 @@ import org.json.JSONObject;
 
 public class Weather {
 
-    private final String idJSON = "id";
+    private final String ID_JSON = "id";
     private Integer id;
-    private final String mainJSON = "main";
+    private final String MAIN_JSON = "main";
     private String main;
-    private final String descriptionJSON = "description";
+    private final String DESCRIPTION_JSON = "description";
     private String description;
-    private final String iconJSON = "icon";
+    private final String ICON_JSON = "icon";
     private String icon;
 
     public Weather(JSONObject obj) throws JSONException {
-        id = obj.getInt(idJSON);
-        main = obj.getString(mainJSON);
-        description = formatDescription(obj.getString(descriptionJSON));
-        icon = obj.getString(iconJSON);
+        id = obj.getInt(ID_JSON);
+        main = obj.getString(MAIN_JSON);
+        description = formatDescription(obj.getString(DESCRIPTION_JSON));
+        icon = obj.getString(ICON_JSON);
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        obj.put(idJSON, id);
-        obj.put(mainJSON, main);
-        obj.put(descriptionJSON, description);
-        obj.put(iconJSON, icon);
+        obj.put(ID_JSON, id);
+        obj.put(MAIN_JSON, main);
+        obj.put(DESCRIPTION_JSON, description);
+        obj.put(ICON_JSON, icon);
 
         return obj;
     }
@@ -40,8 +40,7 @@ public class Weather {
             if (c == ' ' && !space) {
                 sb.append(c);
                 space = true;
-            }
-            else {
+            } else {
                 if (!space)
                     sb.append(c);
                 else
@@ -57,10 +56,6 @@ public class Weather {
         return id;
     }
 
-    public String getMain() {
-        return main;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -68,4 +63,5 @@ public class Weather {
     public String getIcon() {
         return icon;
     }
+
 }

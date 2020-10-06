@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>Tak</item>
+        <item>Nie</item>
+    </string-array>
+
+    <string name="file_save_error_message">Błąd podczas zapisywania danych</string>
+    <string name="file_load_error_message">Błąd podczas wczytywania danych</string>
+
+    <string name="main_update_city_error_message">Błąd podczas pobierania pogody</string>
+    <string name="main_choose_action_dialog">Wybierz akcję</string>
+    <string name="main_confirmation_dialog">Na pewno?</string>
+    <string-array name="main_city_button_array">
+        <item>Aktualizuj</item>
+        <item>Modyfikuj</item>
+        <item>Usuń</item>
+    </string-array>
+
+    <string name="city_current">Bieżąca</string>
+    <string name="city_daily">Tygodniowa</string>
+    <string name="city_hourly">Godzinna</string>
+    <string name="city_minutely">Minutowa</string>
+    <string name="city_current_title">Bieżąca Pogoda</string>
+    <string name="city_daily_title">Pogoda Tygodniowa</string>
+    <string name="city_hourly_title">Pogoda Godzinowa</string>
+    <string name="city_minutely_title">Pogoda Minutowa</string>
+    <string name="city_on_create_error_message">Błąd podczas inicjalizacji widoku miasta</string>
+    <string name="city_daily_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody tygodniowej</string>
+    <string name="city_hourly_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody godzinowej</string>
+
+    <string name="weather_feels_like">Odczuwalna</string>
+    <string name="weather_rain">Deszcz</string>
+    <string name="weather_snow">Śnieg</string>
+    <string name="weather_date">Data</string>
+    <string name="weather_sunrise">Wschód Słońca</string>
+    <string name="weather_sunset">Zachód Słońca</string>
+    <string name="weather_uvi">Index UV</string>
+    <string name="weather_visibility">Widoczność</string>
+    <string name="weather_pressure">Ciśnienie</string>
+    <string name="weather_humidity">Wilgotność</string>
+    <string name="weather_dew_point">Temp Atmosferyczna</string>
+    <string name="weather_clouds">Zachmurzenie</string>
+    <string name="weather_pop">Prawdopodobieństwo Opadów</string>
+    <string name="weather_precipitation">Opad [mm]</string>
+    <string name="weather_wind_speed">Prędkość Wiatru</string>
+    <string name="weather_wind_gust">W Porywach Do</string>
+    <string name="weather_wind_deg">Kierunek Wiatru</string>
+    <string name="weather_temp_day">W Dzień</string>
+    <string name="weather_temp_night">W Nocy</string>
+    <string name="weather_temp_eve">Wieczorem</string>
+    <string name="weather_temp_morn">Rano</string>
+
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_units">Jednostki</string>
+    <string name="settings_decimals">Miejsca dziesiętne</string>
+    <string name="settings_precise_decimals">Miejsca dziesiętne danych precyzyjnych</string>
+    <string name="settings_language">Język</string>
+    <string name="settings_update_mode">Tryb aktualizacji</string>
+    <string name="settings_save">Zapisz</string>
+    <string-array name="settings_units_array">
+        <item>Standardowe (K + m/s)</item>
+        <item>Metryczne (°C + m/s)</item>
+        <item>Imperialne (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_update_mode_array">
+        <item>Ręczny</item>
+        <item>Przy uruchomieniu</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>Angielski</item>
+        <item>Polski</item>
+    </string-array>
+</resources>

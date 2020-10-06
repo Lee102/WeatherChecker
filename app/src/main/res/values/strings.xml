@@ -1,12 +1,83 @@
 <resources>
-    <string name="app_name">WeatherChecker</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name" translatable="false">WeatherChecker</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string-array name="alert_options">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="file_save_error_message">Error while saving data</string>
+    <string name="file_load_error_message">Error while loading data</string>
+
+    <string name="main_update_city_error_message">Weather update error</string>
+    <string name="main_choose_action_dialog">Choose an action</string>
+    <string name="main_confirmation_dialog">Are you sure?</string>
+    <string-array name="main_city_button_array">
+        <item>Update</item>
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string name="city_current">Current</string>
+    <string name="city_daily">Daily</string>
+    <string name="city_hourly">Hourly</string>
+    <string name="city_minutely">Minutely</string>
+    <string name="city_current_title">Current Weather</string>
+    <string name="city_daily_title">Daily Weather</string>
+    <string name="city_hourly_title">Hourly Weather</string>
+    <string name="city_minutely_title">Minutely Weather</string>
+    <string name="city_on_create_error_message">City view initialization error</string>
+    <string name="city_daily_on_click_error_message">Error while trying to change collapsed/expanded view in daily weather</string>
+    <string name="city_hourly_on_click_error_message">Error while trying to change collapsed/expanded view in hourly weather</string>
+
+    <string name="weather_temp" translatable="false">Temp</string>
+    <string name="weather_feels_like">Feels Like</string>
+    <string name="weather_rain">Rain</string>
+    <string name="weather_snow">Snow</string>
+    <string name="weather_date">Date</string>
+    <string name="weather_sunrise">Sunrise</string>
+    <string name="weather_sunset">Sunset</string>
+    <string name="weather_uvi">UV index</string>
+    <string name="weather_visibility">Visibility</string>
+    <string name="weather_pressure">Pressure</string>
+    <string name="weather_humidity">Humidity</string>
+    <string name="weather_dew_point">Dew Point</string>
+    <string name="weather_clouds">Clouds</string>
+    <string name="weather_pop">Probability of precipitation</string>
+    <string name="weather_precipitation">Precipitation [mm]</string>
+    <string name="weather_wind_speed">Wind Speed</string>
+    <string name="weather_wind_gust">Wind Gust</string>
+    <string name="weather_wind_deg">Wind Deg</string>
+    <string name="weather_rain_r" translatable="false">R</string>
+    <string name="weather_snow_s" translatable="false">S</string>
+    <string name="weather_temp_day">Day</string>
+    <string name="weather_temp_min" translatable="false">Min</string>
+    <string name="weather_temp_max" translatable="false">Max</string>
+    <string name="weather_temp_night">Night</string>
+    <string name="weather_temp_eve">Eve</string>
+    <string name="weather_temp_morn">Morn</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_units">Units</string>
+    <string name="settings_decimals">Decimals</string>
+    <string name="settings_precise_decimals">Precise Decimals</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_update_mode">Update Mode</string>
+    <string name="settings_timeout" translatable="false">Timeout</string>
+    <string name="settings_thread_pool" translatable="false">Thread Pool</string>
+    <string name="settings_app_id" translatable="false">App ID</string>
+    <string name="settings_save">Save</string>
+    <string-array name="settings_units_array">
+        <item>Standard</item>
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+    <string-array name="settings_update_mode_array">
+        <item>Manual</item>
+        <item>On Startup</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>English</item>
+        <item>Polish</item>
+    </string-array>
 </resources>

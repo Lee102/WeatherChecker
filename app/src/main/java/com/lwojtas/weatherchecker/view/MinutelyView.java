@@ -13,10 +13,10 @@ import com.lwojtas.weatherchecker.model.city.container.MinutelyValue;
 
 public class MinutelyView extends ViewInitializer {
 
-    private final Minutely minutely;
+    private final Minutely MINUTELY;
 
     public MinutelyView(Minutely minutely) {
-        this.minutely = minutely;
+        this.MINUTELY = minutely;
     }
 
     public void initialize(Context context, ViewStub stub) {
@@ -33,7 +33,7 @@ public class MinutelyView extends ViewInitializer {
         tableLayout.addView(buildTableHeader(context));
 
         boolean even = false;
-        for (MinutelyValue val : minutely.getValues()) {
+        for (MinutelyValue val : MINUTELY.getVALUES()) {
             TableRow row = buildTableRow(context, false, even);
 
             row.addView(buildTableRowTextView(context, val.getDtAsString()));
@@ -50,8 +50,8 @@ public class MinutelyView extends ViewInitializer {
     private TableRow buildTableHeader(Context context) {
         TableRow row = buildTableRow(context, true, false);
 
-        row.addView(buildTableHeaderTextView(context, "Date"));
-        row.addView(buildTableHeaderTextView(context, "Precipitation [mm]"));
+        row.addView(buildTableHeaderTextView(context, context.getResources().getString(R.string.weather_date)));
+        row.addView(buildTableHeaderTextView(context, context.getResources().getString(R.string.weather_precipitation)));
 
         return row;
     }

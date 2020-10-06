@@ -15,10 +15,10 @@ import java.lang.reflect.Field;
 
 public class CurrentView extends ViewInitializer {
 
-    private final Current current;
+    private final Current CURRENT;
 
     public CurrentView(Current current) {
-        this.current = current;
+        this.CURRENT = current;
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
@@ -36,7 +36,7 @@ public class CurrentView extends ViewInitializer {
         linearLayout.setTag(Boolean.FALSE);
 
         ImageView imageView = new ImageView(context);
-        Field field = (R.drawable.class).getDeclaredField("w" + current.getWeather().get(0).getIcon());
+        Field field = (R.drawable.class).getDeclaredField("w" + CURRENT.getWeather().get(0).getIcon());
         imageView.setImageResource(field.getInt(field));
         linearLayout.addView(imageView);
 
@@ -44,35 +44,35 @@ public class CurrentView extends ViewInitializer {
         TableRow row;
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Temp"));
-        row.addView(buildTableRowTextView(context, current.getTempAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_temp)));
+        row.addView(buildTableRowTextView(context, CURRENT.getTempAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Feels Like"));
-        row.addView(buildTableRowTextView(context, current.getFeelsLikeAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_feels_like)));
+        row.addView(buildTableRowTextView(context, CURRENT.getFeelsLikeAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
         row.addView(buildTableRowTextView(context, ""));
-        row.addView(buildTableRowTextView(context, current.getWeather().get(0).getDescription()));
+        row.addView(buildTableRowTextView(context, CURRENT.getWeather().get(0).getDescription()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Rain"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_rain)));
         String rain = "";
-        if (current.getRain1h() != null)
-            rain += current.getRain1hAsString();
+        if (CURRENT.rain1hExists())
+            rain += CURRENT.getRain1hAsString();
         else
             rain += "-";
         row.addView(buildTableRowTextView(context, rain));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Snow"));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_snow)));
         String snow = "";
-        if (current.getSnow1h() != null)
-            snow += current.getSnow1hAsString();
+        if (CURRENT.snow1hExists())
+            snow += CURRENT.getSnow1hAsString();
         else
             snow += "-";
         row.addView(buildTableRowTextView(context, snow));
@@ -87,67 +87,67 @@ public class CurrentView extends ViewInitializer {
         TableRow row;
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Date"));
-        row.addView(buildTableRowTextView(context, current.getDtAsString("d-MM-yyyy")));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_date)));
+        row.addView(buildTableRowTextView(context, CURRENT.getDtAsString("d-MM-yyyy")));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Sunrise"));
-        row.addView(buildTableRowTextView(context, current.getSunriseAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_sunrise)));
+        row.addView(buildTableRowTextView(context, CURRENT.getSunriseAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Sunset"));
-        row.addView(buildTableRowTextView(context, current.getSunsetAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_sunset)));
+        row.addView(buildTableRowTextView(context, CURRENT.getSunsetAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Uvi"));
-        row.addView(buildTableRowTextView(context, current.getUviAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_uvi)));
+        row.addView(buildTableRowTextView(context, CURRENT.getUviAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Visibility"));
-        row.addView(buildTableRowTextView(context, current.getVisibilityAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_visibility)));
+        row.addView(buildTableRowTextView(context, CURRENT.getVisibilityAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Pressure"));
-        row.addView(buildTableRowTextView(context, current.getPressureAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_pressure)));
+        row.addView(buildTableRowTextView(context, CURRENT.getPressureAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Humidity"));
-        row.addView(buildTableRowTextView(context, current.getHumidityAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_humidity)));
+        row.addView(buildTableRowTextView(context, CURRENT.getHumidityAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Dew Point"));
-        row.addView(buildTableRowTextView(context, current.getDewPointAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_dew_point)));
+        row.addView(buildTableRowTextView(context, CURRENT.getDewPointAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, "Clouds"));
-        row.addView(buildTableRowTextView(context, current.getCloudsAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_clouds)));
+        row.addView(buildTableRowTextView(context, CURRENT.getCloudsAsString()));
         tableLayout.addView(row);
 
         row = buildTableRow(context, false, true);
-        row.addView(buildTableRowTextView(context, "Wind Speed"));
-        row.addView(buildTableRowTextView(context, current.getWindSpeedAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_speed)));
+        row.addView(buildTableRowTextView(context, CURRENT.getWindSpeedAsString()));
         tableLayout.addView(row);
 
         boolean even = false;
-        if (current.getWindGust() != null) {
+        if (CURRENT.windGustExists()) {
             row = buildTableRow(context, false, false);
-            row.addView(buildTableRowTextView(context, "Wind Gust"));
-            row.addView(buildTableRowTextView(context, current.getWindGustAsString()));
+            row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_gust)));
+            row.addView(buildTableRowTextView(context, CURRENT.getWindGustAsString()));
             tableLayout.addView(row);
             even = true;
         }
 
         row = buildTableRow(context, false, even);
-        row.addView(buildTableRowTextView(context, "Wind Deg"));
-        row.addView(buildTableRowTextView(context, current.getWindDegAsString()));
+        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_wind_deg)));
+        row.addView(buildTableRowTextView(context, CURRENT.getWindDegAsString()));
         tableLayout.addView(row);
 
         return tableLayout;

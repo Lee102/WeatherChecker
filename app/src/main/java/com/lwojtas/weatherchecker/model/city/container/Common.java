@@ -1,9 +1,14 @@
 package com.lwojtas.weatherchecker.model.city.container;
 
+import com.lwojtas.weatherchecker.model.AppData;
+import com.lwojtas.weatherchecker.model.Settings;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,134 +17,131 @@ import java.util.Locale;
 
 public class Common {
 
-    private final String dtJSON = "dt";
+    private final String DT_JSON = "dt";
     private Date dt;
-    private final String pressureJSON = "pressure";
+    private final String PRESSURE_JSON = "pressure";
     private Double pressure;
-    private final String humidityJSON = "humidity";
+    private final String HUMIDITY_JSON = "humidity";
     private Double humidity;
-    private final String dewPointJSON = "dew_point";
+    private final String DEW_POINT_JSON = "dew_point";
     private Double dewPoint;
-    private final String cloudsJSON = "clouds";
+    private final String CLOUDS_JSON = "clouds";
     private Double clouds;
-    private final String windSpeedJSON = "wind_speed";
+    private final String WIND_SPEED_JSON = "wind_speed";
     private Double windSpeed;
-    private final String windGustJSON = "wind_gust";
+    private final String WIND_GUST_JSON = "wind_gust";
     private Double windGust;
-    private final String windDegJSON = "wind_deg";
+    private final String WIND_DEG_JSON = "wind_deg";
     private Double windDeg;
-    private final String weatherJSON = "weather";
+    private final String WEATHER_JSON = "weather";
     private List<Weather> weather;
 
     public Common(JSONObject obj, Long timezoneOffset) throws JSONException {
-        dt = new Date((obj.getLong(dtJSON) + timezoneOffset) * 1000);
-        pressure = obj.getDouble(pressureJSON);
-        humidity = obj.getDouble(humidityJSON);
-        dewPoint = obj.getDouble(dewPointJSON);
-        clouds = obj.getDouble(cloudsJSON);
-        windSpeed = obj.getDouble(windSpeedJSON);
-        if (obj.has(windGustJSON))
-            windGust = obj.getDouble(windGustJSON);
-        windDeg = obj.getDouble(windDegJSON);
+        dt = new Date((obj.getLong(DT_JSON) + timezoneOffset) * 1000);
+        pressure = obj.getDouble(PRESSURE_JSON);
+        humidity = obj.getDouble(HUMIDITY_JSON);
+        dewPoint = obj.getDouble(DEW_POINT_JSON);
+        clouds = obj.getDouble(CLOUDS_JSON);
+        windSpeed = obj.getDouble(WIND_SPEED_JSON);
+        if (obj.has(WIND_GUST_JSON))
+            windGust = obj.getDouble(WIND_GUST_JSON);
+        windDeg = obj.getDouble(WIND_DEG_JSON);
 
         weather = new LinkedList<>();
-        JSONArray arr = obj.getJSONArray(weatherJSON);
+        JSONArray arr = obj.getJSONArray(WEATHER_JSON);
         for (int i = 0; i < arr.length(); i++)
             weather.add(new Weather(arr.getJSONObject(i)));
     }
 
-    protected JSONObject commonToJSON(Long timezoneOffset) throws JSONException {
+    protected JSONObject toJSON(Long timezoneOffset) throws JSONException {
         JSONObject obj = new JSONObject();
 
         long dt = this.dt.getTime() / 1000 - timezoneOffset;
-        obj.put(dtJSON, dt);
-        obj.put(pressureJSON, pressure);
-        obj.put(humidityJSON, humidity);
-        obj.put(dewPointJSON, dewPoint);
-        obj.put(cloudsJSON, clouds);
-        obj.put(windSpeedJSON, windSpeed);
+        obj.put(DT_JSON, dt);
+        obj.put(PRESSURE_JSON, pressure);
+        obj.put(HUMIDITY_JSON, humidity);
+        obj.put(DEW_POINT_JSON, dewPoint);
+        obj.put(CLOUDS_JSON, clouds);
+        obj.put(WIND_SPEED_JSON, windSpeed);
         if (windGust != null)
-            obj.put(windGustJSON, windGust);
-        obj.put(windDegJSON, windDeg);
+            obj.put(WIND_GUST_JSON, windGust);
+        obj.put(WIND_DEG_JSON, windDeg);
 
         JSONArray arr = new JSONArray();
         for (Weather weather : this.weather)
             arr.put(weather.toJSON());
-        obj.put(weatherJSON, arr);
+        obj.put(WEATHER_JSON, arr);
 
         return obj;
     }
 
-    public Date getDt() {
-        return dt;
+    protected static String getAsString(Double value, Integer decimals, Locale locale, String unit) {
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(decimals, RoundingMode.HALF_UP);
+
+        String pattern = "%." + decimals + "f";
+
+        return String.format(locale, pattern, bd.doubleValue()) + " " + unit;
     }
 
     public String getDtAsString(String pattern) {
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern, new Locale("en"));
+        Settings settings = AppData.getSettings();
 
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, settings.getLocale());
         return sdf.format(dt);
     }
 
-    public Double getPressure() {
-        return pressure;
-    }
-
     public String getPressureAsString() {
-        return String.format("%.0f", pressure) + " hPa";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getHumidity() {
-        return humidity;
+        return getAsString(pressure, settings.getDecimals(), settings.getLocale(), "hPa");
     }
 
     public String getHumidityAsString() {
-        return String.format("%.0f", humidity) + "%";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getDewPoint() {
-        return dewPoint;
+        return getAsString(humidity, settings.getDecimals(), settings.getLocale(), "%");
     }
 
     public String getDewPointAsString() {
-        return String.format("%.2f", dewPoint) + "°C";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getClouds() {
-        return clouds;
+        return getAsString(dewPoint, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
     }
 
     public String getCloudsAsString() {
-        return String.format("%.0f", clouds) + "%";
-    }
+        Settings settings = AppData.getSettings();
 
-    public Double getWindSpeed() {
-        return windSpeed;
+        return getAsString(clouds, settings.getDecimals(), settings.getLocale(), "%");
     }
 
     public String getWindSpeedAsString() {
-        return String.format("%.2f", windSpeed) + " m/s";
+        Settings settings = AppData.getSettings();
+
+        return getAsString(windSpeed, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED));
     }
 
-    public Double getWindGust() {
-        return windGust;
+    public boolean windGustExists() {
+        return windGust != null;
     }
 
     public String getWindGustAsString() {
-        if (windGust != null)
-            return String.format("%.2f", windGust) + " m/s";
-        else
+        if (windGust != null) {
+            Settings settings = AppData.getSettings();
+
+            return getAsString(windGust, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED));
+        } else
             return null;
     }
 
-    public Double getWindDeg() {
-        return windDeg;
-    }
-
     public String getWindDegAsString() {
-        return String.format("%.0f", windDeg) + "°";
+        Settings settings = AppData.getSettings();
+
+        return getAsString(windDeg, settings.getDecimals(), settings.getLocale(), "°");
     }
 
     public List<Weather> getWeather() {
         return weather;
     }
+
 }

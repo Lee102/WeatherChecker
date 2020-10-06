@@ -10,25 +10,26 @@ import java.util.List;
 
 public class Minutely {
 
-    private final List<MinutelyValue> values;
+    private final List<MinutelyValue> VALUES;
 
     public Minutely(JSONArray arr, Long timezoneOffset) throws JSONException {
-        values = new LinkedList<>();
+        VALUES = new LinkedList<>();
 
         for (int i = 0; i < arr.length(); i++)
-            values.add(new MinutelyValue(arr.getJSONObject(i), timezoneOffset));
+            VALUES.add(new MinutelyValue(arr.getJSONObject(i), timezoneOffset));
     }
 
     public JSONArray toJSON(Long timezoneOffset) throws JSONException {
         JSONArray arr = new JSONArray();
 
-        for (MinutelyValue val : values)
+        for (MinutelyValue val : VALUES)
             arr.put(val.toJSON(timezoneOffset));
 
         return arr;
     }
 
-    public List<MinutelyValue> getValues() {
-        return values;
+    public List<MinutelyValue> getVALUES() {
+        return VALUES;
     }
+
 }
