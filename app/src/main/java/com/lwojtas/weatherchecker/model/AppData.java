@@ -9,7 +9,6 @@ import java.util.List;
 
 public class AppData {
 
-    private static boolean initialized;
     private static final String CITIES_JSON = "cities";
     private static List<City> cities;
     private static final String SETTINGS_JSON = "settings";
@@ -27,8 +26,6 @@ public class AppData {
             cities.add(new City(arr.getJSONObject(i)));
 
         settings = new Settings(obj.getJSONObject(SETTINGS_JSON));
-
-        initialized = true;
     }
 
     public static JSONObject toJSON() throws JSONException {
@@ -42,10 +39,6 @@ public class AppData {
         obj.put(SETTINGS_JSON, settings.toJSON());
 
         return obj;
-    }
-
-    public static boolean isInitialized() {
-        return initialized;
     }
 
     public static List<City> getCities() {

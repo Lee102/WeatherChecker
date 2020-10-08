@@ -20,10 +20,10 @@ public class MinutelyView extends ViewInitializer {
     }
 
     public void initialize(Context context, ViewStub stub) {
-        stub.setLayoutResource(R.layout.city_common);
+        stub.setLayoutResource(R.layout.weather_common);
         View view = stub.inflate();
 
-        LinearLayout linearLayout = view.findViewById(R.id.cityCommonLinearLayout);
+        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
         linearLayout.addView(buildRecordsTable(context));
     }
 

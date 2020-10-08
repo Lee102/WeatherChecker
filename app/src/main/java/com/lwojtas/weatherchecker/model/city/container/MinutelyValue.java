@@ -43,7 +43,7 @@ public class MinutelyValue {
     public String getPrecipitationAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(precipitation, settings.getPreciseDecimals(), settings.getLocale(), "");
+        return getAsString(precipitation, settings.getPreciseDecimals(), settings.getLocale(), "", false);
     }
 
 }

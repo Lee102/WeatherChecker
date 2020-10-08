@@ -22,17 +22,17 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:layout_height="match_parent">
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_units"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -40,18 +40,23 @@
 
                     <Spinner
                         android:id="@+id/settingsUnitsSpinner"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:background="@android:drawable/btn_dropdown"
                         android:entries="@array/settings_units_array" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_decimals"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -59,19 +64,23 @@
 
                     <EditText
                         android:id="@+id/settingsDecimalsEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:ems="10"
                         android:inputType="number" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_precise_decimals"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -79,19 +88,46 @@
 
                     <EditText
                         android:id="@+id/settingsPreciseDecimalsEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:ems="10"
                         android:inputType="number" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/settingsWeatherActualThresholdTextView"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
+                        android:text="@string/settings_weather_actual_threshold"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <SeekBar
+                        android:id="@+id/settingsWeatherActualThresholdSeekBar"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_language"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -99,37 +135,47 @@
 
                     <Spinner
                         android:id="@+id/settingsLanguageSpinner"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:background="@android:drawable/btn_dropdown"
                         android:entries="@array/settings_language_array" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_update_mode"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <Spinner
-                        android:id="@+id/settingsUpdateModeSpinner"
-                        android:layout_height="40dp"
-                        android:background="@android:drawable/btn_dropdown"
-                        android:entries="@array/settings_update_mode_array" />
+                    <ToggleButton
+                        android:id="@+id/settingsUpdateModeToggleButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
+                        android:textOff="@string/settings_update_mode_off"
+                        android:textOn="@string/settings_update_mode_on" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_timeout"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -137,19 +183,23 @@
 
                     <EditText
                         android:id="@+id/settingsTimeoutEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:ems="10"
                         android:inputType="number" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_thread_pool"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -157,19 +207,22 @@
 
                     <EditText
                         android:id="@+id/settingsThreadPoolEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:ems="10"
                         android:inputType="number" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight=".4"
                         android:text="@string/settings_app_id"
                         android:textAlignment="center"
                         android:textSize="18sp"
@@ -177,8 +230,10 @@
 
                     <EditText
                         android:id="@+id/settingsAppIdEditText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight=".6"
                         android:ems="10"
                         android:inputType="textPersonName" />
                 </TableRow>
@@ -188,6 +243,8 @@
                 android:id="@+id/settingsSaveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
                 android:onClick="onSaveButtonClick"
                 android:text="@string/settings_save" />
 

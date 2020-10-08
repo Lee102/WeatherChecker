@@ -8,7 +8,10 @@ import com.lwojtas.weatherchecker.model.city.Minutely;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.TimeZone;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import static com.lwojtas.weatherchecker.util.LocaleTool.getDoubleAsString;
 
 public class City {
 
@@ -18,8 +21,6 @@ public class City {
     private Double lat;
     private final String LON_JSON = "lon";
     private Double lon;
-    private final String TIMEZONE_JSON = "timezone";
-    private TimeZone timezone;
     private final String TIMEZONE_OFFSET_JSON = "timezone_offset";
     private Long timezoneOffset;
     private final String CURRENT_JSON = "current";
@@ -45,7 +46,6 @@ public class City {
     public void fromJSON(JSONObject obj) throws JSONException {
         lat = obj.getDouble(LAT_JSON);
         lon = obj.getDouble(LON_JSON);
-        timezone = TimeZone.getTimeZone(obj.getString(TIMEZONE_JSON));
         timezoneOffset = obj.getLong(TIMEZONE_OFFSET_JSON);
         if (obj.has(CURRENT_JSON))
             current = new Current(obj.getJSONObject(CURRENT_JSON), timezoneOffset);
@@ -62,7 +62,6 @@ public class City {
         obj.put(NAME_JSON, name);
         obj.put(LAT_JSON, lat);
         obj.put(LON_JSON, lon);
-        obj.put(TIMEZONE_JSON, timezone);
         obj.put(TIMEZONE_OFFSET_JSON, timezoneOffset);
         if (current != null)
             obj.put(CURRENT_JSON, current.toJSON(timezoneOffset));
@@ -73,6 +72,16 @@ public class City {
         if (daily != null)
             obj.put(DAILY_JSON, daily.toJSON(timezoneOffset));
         return obj;
+    }
+
+    public Boolean isActual() {
+        if (current == null || minutely == null || hourly == null || daily == null)
+            return null;
+        else {
+            Date currentDate = new Date();
+            long diff = currentDate.getTime() - current.getDt().getTime();
+            return TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < AppData.getSettings().getWeatherActualThreshold();
+        }
     }
 
     public String getName() {
@@ -87,6 +96,12 @@ public class City {
         return lat;
     }
 
+    public String getLatAsString() {
+        Settings settings = AppData.getSettings();
+
+        return getDoubleAsString(lat, settings.getPreciseDecimals(), settings.getLocale(), "", false);
+    }
+
     public void setLat(Double lat) {
         this.lat = lat;
     }
@@ -95,16 +110,14 @@ public class City {
         return lon;
     }
 
+    public String getLonAsString() {
+        Settings settings = AppData.getSettings();
+
+        return getDoubleAsString(lon, settings.getPreciseDecimals(), settings.getLocale(), "", false);
+    }
+
     public void setLon(Double lon) {
         this.lon = lon;
-    }
-
-    public TimeZone getTimezone() {
-        return timezone;
-    }
-
-    public Long getTimezoneOffset() {
-        return timezoneOffset;
     }
 
     public Current getCurrent() {

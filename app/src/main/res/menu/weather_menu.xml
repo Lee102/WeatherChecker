@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/weatherMenuCurrent"
+            android:title="@string/weather_current" />
+        <item
+            android:id="@+id/weatherMenuDaily"
+            android:title="@string/weather_daily" />
+        <item
+            android:id="@+id/weatherMenuHourly"
+            android:title="@string/weather_hourly" />
+        <item
+            android:id="@+id/weatherMenuMinutely"
+            android:title="@string/weather_minutely" />
+    </group>
+</menu>

@@ -7,27 +7,30 @@
 
     <string name="file_save_error_message">Błąd podczas zapisywania danych</string>
     <string name="file_load_error_message">Błąd podczas wczytywania danych</string>
+    <string name="network_connection_error_message">Błąd połączenia z siecią Internet</string>
 
     <string name="main_update_city_error_message">Błąd podczas pobierania pogody</string>
     <string name="main_choose_action_dialog">Wybierz akcję</string>
     <string name="main_confirmation_dialog">Na pewno?</string>
     <string-array name="main_city_button_array">
-        <item>Aktualizuj</item>
-        <item>Modyfikuj</item>
-        <item>Usuń</item>
+        <item>Aktualizacja pogody</item>
+        <item>Modyfikuj miasto</item>
+        <item>Usuń miasto</item>
     </string-array>
 
-    <string name="city_current">Bieżąca</string>
-    <string name="city_daily">Tygodniowa</string>
-    <string name="city_hourly">Godzinna</string>
-    <string name="city_minutely">Minutowa</string>
-    <string name="city_current_title">Bieżąca Pogoda</string>
-    <string name="city_daily_title">Pogoda Tygodniowa</string>
-    <string name="city_hourly_title">Pogoda Godzinowa</string>
-    <string name="city_minutely_title">Pogoda Minutowa</string>
-    <string name="city_on_create_error_message">Błąd podczas inicjalizacji widoku miasta</string>
-    <string name="city_daily_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody tygodniowej</string>
-    <string name="city_hourly_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody godzinowej</string>
+    <string name="about_title">O programie</string>
+
+    <string name="weather_current">Bieżąca</string>
+    <string name="weather_daily">Tygodniowa</string>
+    <string name="weather_hourly">Godzinna</string>
+    <string name="weather_minutely">Minutowa</string>
+    <string name="weather_current_title">Bieżąca Pogoda</string>
+    <string name="weather_daily_title">Pogoda Tygodniowa</string>
+    <string name="weather_hourly_title">Pogoda Godzinowa</string>
+    <string name="weather_minutely_title">Pogoda Minutowa</string>
+    <string name="weather_on_create_error_message">Błąd podczas inicjalizacji widoku miasta</string>
+    <string name="weather_daily_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody tygodniowej</string>
+    <string name="weather_hourly_on_click_error_message">Błąd podczas zmiany zwiniętego/rozszerzonego widoku w widoku pogody godzinowej</string>
 
     <string name="weather_feels_like">Odczuwalna</string>
     <string name="weather_rain">Deszcz</string>
@@ -51,21 +54,31 @@
     <string name="weather_temp_eve">Wieczorem</string>
     <string name="weather_temp_morn">Rano</string>
 
+    <string name="city_title_new">Nowe Miasto</string>
+    <string name="city_title_modify">Edycja Miasta</string>
+    <string name="city_name">Nazwa</string>
+    <string name="city_lat">Szerokość</string>
+    <string name="city_lon">Długość</string>
+    <string name="city_save">Zapisz</string>
+    <string name="city_search">Szukaj</string>
+    <string name="city_save_error_message">Wypełnij pola nazwa, szerokość i długość</string>
+    <string name="city_search_error_message">Błąd podczas wyszukiwania miasta</string>
+
     <string name="settings_title">Ustawienia</string>
     <string name="settings_units">Jednostki</string>
     <string name="settings_decimals">Miejsca dziesiętne</string>
     <string name="settings_precise_decimals">Miejsca dziesiętne danych precyzyjnych</string>
+    <string name="settings_weather_actual_threshold">Pogoda nieaktualna po</string>
+    <string name="settings_weather_actual_threshold_end">godzinach</string>
     <string name="settings_language">Język</string>
-    <string name="settings_update_mode">Tryb aktualizacji</string>
+    <string name="settings_update_mode">Aktualizacja przy starcie</string>
+    <string name="settings_update_mode_on">Wł</string>
+    <string name="settings_update_mode_off">Wył</string>
     <string name="settings_save">Zapisz</string>
     <string-array name="settings_units_array">
         <item>Standardowe (K + m/s)</item>
         <item>Metryczne (°C + m/s)</item>
         <item>Imperialne (°F + mph/h)</item>
-    </string-array>
-    <string-array name="settings_update_mode_array">
-        <item>Ręczny</item>
-        <item>Przy uruchomieniu</item>
     </string-array>
     <string-array name="settings_language_array">
         <item>Angielski</item>

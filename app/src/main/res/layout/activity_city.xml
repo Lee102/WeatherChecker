@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CityActivity">
 
-    <ViewFlipper
-        android:id="@+id/cityViewFlipper"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
@@ -16,34 +15,116 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ViewStub
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout="@layout/city_common" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <ViewStub
-            android:id="@+id/cityViewCurrentViewStub"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout="@layout/city_common" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
 
-        <ViewStub
-            android:id="@+id/cityViewDailyViewStub"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout="@layout/city_common" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp">
 
-        <ViewStub
-            android:id="@+id/cityViewHourlyViewStub"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout="@layout/city_common" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/city_name"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-        <ViewStub
-            android:id="@+id/cityViewMinutelyViewStub"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout="@layout/city_common" />
-    </ViewFlipper>
+                    <EditText
+                        android:id="@+id/cityNameEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="7"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
+                </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/city_lat"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/cityLatEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="7"
+                        android:ems="10"
+                        android:inputType="number" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/city_lon"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/cityLonEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="7"
+                        android:ems="10"
+                        android:inputType="number" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/citySaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onSaveButtonClick"
+                    android:text="@string/city_save" />
+
+                <Button
+                    android:id="@+id/citySearchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onSearchButtonClick"
+                    android:text="@string/city_search" />
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/citySearchResultTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:shrinkColumns="*"
+                android:stretchColumns="*" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

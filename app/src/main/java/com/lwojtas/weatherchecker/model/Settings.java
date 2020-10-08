@@ -77,6 +77,8 @@ public class Settings {
     private Integer decimals;
     private final String PRECISE_DECIMALS_JSON = "preciseDecimals";
     private Integer preciseDecimals;
+    private final String WEATHER_ACTUAL_THRESHOLD = "weatherActualThreshold";
+    private Integer weatherActualThreshold;
     private final String LOCALE_JSON = "locale";
     private Locale locale;
     private final String UPDATE_MODE_JSON = "updateMode";
@@ -92,6 +94,7 @@ public class Settings {
         units = Units.METRIC;
         decimals = 0;
         preciseDecimals = 2;
+        weatherActualThreshold = 24;
         locale = Locale.ENGLISH;
         updateMode = UpdateMode.MANUAL;
         timeout = 10000;
@@ -111,6 +114,9 @@ public class Settings {
 
             if (obj.has(PRECISE_DECIMALS_JSON))
                 preciseDecimals = obj.getInt(PRECISE_DECIMALS_JSON);
+
+            if (obj.has(WEATHER_ACTUAL_THRESHOLD))
+                weatherActualThreshold = obj.getInt(WEATHER_ACTUAL_THRESHOLD);
 
             if (obj.has(LOCALE_JSON))
                 locale = Locale.forLanguageTag(obj.getString(LOCALE_JSON));
@@ -132,10 +138,10 @@ public class Settings {
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-
         obj.put(UNITS_JSON, units.getNUM());
         obj.put(DECIMALS_JSON, decimals);
         obj.put(PRECISE_DECIMALS_JSON, preciseDecimals);
+        obj.put(WEATHER_ACTUAL_THRESHOLD, weatherActualThreshold);
         obj.put(LOCALE_JSON, locale.toLanguageTag());
         obj.put(UPDATE_MODE_JSON, updateMode.getNUM());
         obj.put(TIMEOUT_JSON, timeout);
@@ -208,6 +214,14 @@ public class Settings {
 
     public void setPreciseDecimals(Integer preciseDecimals) {
         this.preciseDecimals = preciseDecimals;
+    }
+
+    public Integer getWeatherActualThreshold() {
+        return weatherActualThreshold;
+    }
+
+    public void setWeatherActualThreshold(Integer weatherActualThreshold) {
+        this.weatherActualThreshold = weatherActualThreshold;
     }
 
     public Locale getLocale() {

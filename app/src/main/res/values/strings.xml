@@ -8,30 +8,34 @@
 
     <string name="file_save_error_message">Error while saving data</string>
     <string name="file_load_error_message">Error while loading data</string>
+    <string name="network_connection_error_message">Network connection error</string>
 
     <string name="main_update_city_error_message">Weather update error</string>
     <string name="main_choose_action_dialog">Choose an action</string>
     <string name="main_confirmation_dialog">Are you sure?</string>
     <string-array name="main_city_button_array">
-        <item>Update</item>
-        <item>Edit</item>
-        <item>Delete</item>
+        <item>Weather update</item>
+        <item>Edit city</item>
+        <item>Delete city</item>
     </string-array>
 
-    <string name="city_current">Current</string>
-    <string name="city_daily">Daily</string>
-    <string name="city_hourly">Hourly</string>
-    <string name="city_minutely">Minutely</string>
-    <string name="city_current_title">Current Weather</string>
-    <string name="city_daily_title">Daily Weather</string>
-    <string name="city_hourly_title">Hourly Weather</string>
-    <string name="city_minutely_title">Minutely Weather</string>
-    <string name="city_on_create_error_message">City view initialization error</string>
-    <string name="city_daily_on_click_error_message">Error while trying to change collapsed/expanded view in daily weather</string>
-    <string name="city_hourly_on_click_error_message">Error while trying to change collapsed/expanded view in hourly weather</string>
+    <string name="about_title">About</string>
+    <string name="about" formatted="false" translatable="false">WeatherChecker\nver beta build 09.10.2020\nAuthor Łukasz Wojtas</string>
+
+    <string name="weather_current">Current</string>
+    <string name="weather_daily">Daily</string>
+    <string name="weather_hourly">Hourly</string>
+    <string name="weather_minutely">Minutely</string>
+    <string name="weather_current_title">Current Weather</string>
+    <string name="weather_daily_title">Daily Weather</string>
+    <string name="weather_hourly_title">Hourly Weather</string>
+    <string name="weather_minutely_title">Minutely Weather</string>
+    <string name="weather_on_create_error_message">City view initialization error</string>
+    <string name="weather_daily_on_click_error_message">Error while trying to change collapsed/expanded view in daily weather</string>
+    <string name="weather_hourly_on_click_error_message">Error while trying to change collapsed/expanded view in hourly weather</string>
 
     <string name="weather_temp" translatable="false">Temp</string>
-    <string name="weather_feels_like">Feels Like</string>
+    <string name="weather_feels_like">Feels like</string>
     <string name="weather_rain">Rain</string>
     <string name="weather_snow">Snow</string>
     <string name="weather_date">Date</string>
@@ -41,15 +45,13 @@
     <string name="weather_visibility">Visibility</string>
     <string name="weather_pressure">Pressure</string>
     <string name="weather_humidity">Humidity</string>
-    <string name="weather_dew_point">Dew Point</string>
+    <string name="weather_dew_point">Dew point</string>
     <string name="weather_clouds">Clouds</string>
     <string name="weather_pop">Probability of precipitation</string>
     <string name="weather_precipitation">Precipitation [mm]</string>
-    <string name="weather_wind_speed">Wind Speed</string>
-    <string name="weather_wind_gust">Wind Gust</string>
-    <string name="weather_wind_deg">Wind Deg</string>
-    <string name="weather_rain_r" translatable="false">R</string>
-    <string name="weather_snow_s" translatable="false">S</string>
+    <string name="weather_wind_speed">Wind speed</string>
+    <string name="weather_wind_gust">Wind gust</string>
+    <string name="weather_wind_deg">Wind deg</string>
     <string name="weather_temp_day">Day</string>
     <string name="weather_temp_min" translatable="false">Min</string>
     <string name="weather_temp_max" translatable="false">Max</string>
@@ -57,24 +59,34 @@
     <string name="weather_temp_eve">Eve</string>
     <string name="weather_temp_morn">Morn</string>
 
+    <string name="city_title_new">New City</string>
+    <string name="city_title_modify">Modify City</string>
+    <string name="city_name">Name</string>
+    <string name="city_lat">Latitude</string>
+    <string name="city_lon">Longitude</string>
+    <string name="city_save">Save</string>
+    <string name="city_search">Search</string>
+    <string name="city_save_error_message">Fill fields name, lat and lon</string>
+    <string name="city_search_error_message">City search error</string>
+
     <string name="settings_title">Settings</string>
     <string name="settings_units">Units</string>
     <string name="settings_decimals">Decimals</string>
-    <string name="settings_precise_decimals">Precise Decimals</string>
+    <string name="settings_precise_decimals">Precise decimals</string>
+    <string name="settings_weather_actual_threshold">Weather out of date after</string>
+    <string name="settings_weather_actual_threshold_end">hours</string>
     <string name="settings_language">Language</string>
-    <string name="settings_update_mode">Update Mode</string>
+    <string name="settings_update_mode">Update on startup</string>
+    <string name="settings_update_mode_on">On</string>
+    <string name="settings_update_mode_off">Off</string>
     <string name="settings_timeout" translatable="false">Timeout</string>
-    <string name="settings_thread_pool" translatable="false">Thread Pool</string>
+    <string name="settings_thread_pool" translatable="false">Thread pool</string>
     <string name="settings_app_id" translatable="false">App ID</string>
     <string name="settings_save">Save</string>
     <string-array name="settings_units_array">
-        <item>Standard</item>
-        <item>Metric</item>
-        <item>Imperial</item>
-    </string-array>
-    <string-array name="settings_update_mode_array">
-        <item>Manual</item>
-        <item>On Startup</item>
+        <item>Standard (K + m/s)</item>
+        <item>Metric (°C + m/s)</item>
+        <item>Imperial (°F + mph/h)</item>
     </string-array>
     <string-array name="settings_language_array">
         <item>English</item>

@@ -7,4 +7,7 @@
     <color name="subHeaderRowColor">#344574EC</color>
     <color name="oddRowColor">#00000000</color>
     <color name="evenRowColor">#25000000</color>
+    <color name="cityWeatherActual">#8000FF0A</color>
+    <color name="cityWeatherOld">#80FF9800</color>
+    <color name="cityWeatherNull">#80FF0000</color>
 </resources>

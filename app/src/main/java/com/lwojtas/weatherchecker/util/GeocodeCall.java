@@ -1,10 +1,10 @@
 package com.lwojtas.weatherchecker.util;
 
 import com.lwojtas.weatherchecker.model.AppData;
-import com.lwojtas.weatherchecker.model.City;
+import com.lwojtas.weatherchecker.model.GeocodeCity;
 import com.lwojtas.weatherchecker.model.Settings;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -15,26 +15,26 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
-public class CityWeatherCall implements Callable<Void> {
+public class GeocodeCall implements Callable<List<GeocodeCity>> {
 
-    private final City CITY;
+    private final String CITY_NAME;
 
-    public CityWeatherCall(City city) {
-        this.CITY = city;
+    public GeocodeCall(String cityName) {
+        this.CITY_NAME = cityName;
     }
 
     @Override
-    public Void call() throws Exception {
+    public List<GeocodeCity> call() throws Exception {
         Settings settings = AppData.getSettings();
 
-        URL url = new URL("https://api.openweathermap.org/data/2.5/onecall?" +
-                "lat=" + CITY.getLat() +
-                "&lon=" + CITY.getLon() +
-                "&units=" + settings.getUnits().getTag() +
-                "&lang=" + settings.getLocale().toLanguageTag() +
-                "&appid=" + settings.getAppId());
+        URL url = new URL("https://nominatim.openstreetmap.org/search?" +
+                "city=" + CITY_NAME +
+                "&accept-language=" + settings.getLocale().toLanguageTag() +
+                "&format=json");
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setConnectTimeout(settings.getTimeout());
@@ -48,11 +48,13 @@ public class CityWeatherCall implements Callable<Void> {
             }
         }
 
-        CITY.fromJSON(new JSONObject(textBuilder.toString()));
+        JSONArray arr = new JSONArray(textBuilder.toString());
+        List<GeocodeCity> cities = new ArrayList<>();
+        for (int i = 0; i < arr.length(); i++)
+            cities.add(new GeocodeCity(arr.getJSONObject(i)));
 
         con.disconnect();
 
-        return null;
+        return cities;
     }
-
 }

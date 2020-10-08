@@ -5,8 +5,6 @@ import org.json.JSONObject;
 
 public class Weather {
 
-    private final String ID_JSON = "id";
-    private Integer id;
     private final String MAIN_JSON = "main";
     private String main;
     private final String DESCRIPTION_JSON = "description";
@@ -15,7 +13,6 @@ public class Weather {
     private String icon;
 
     public Weather(JSONObject obj) throws JSONException {
-        id = obj.getInt(ID_JSON);
         main = obj.getString(MAIN_JSON);
         description = formatDescription(obj.getString(DESCRIPTION_JSON));
         icon = obj.getString(ICON_JSON);
@@ -24,7 +21,6 @@ public class Weather {
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        obj.put(ID_JSON, id);
         obj.put(MAIN_JSON, main);
         obj.put(DESCRIPTION_JSON, description);
         obj.put(ICON_JSON, icon);
@@ -50,10 +46,6 @@ public class Weather {
         }
 
         return sb.toString();
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getDescription() {

@@ -1,120 +1,104 @@
 package com.lwojtas.weatherchecker;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewStub;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lwojtas.weatherchecker.model.AppData;
 import com.lwojtas.weatherchecker.model.City;
-import com.lwojtas.weatherchecker.model.city.Current;
-import com.lwojtas.weatherchecker.model.city.Daily;
-import com.lwojtas.weatherchecker.model.city.Hourly;
-import com.lwojtas.weatherchecker.model.city.Minutely;
-import com.lwojtas.weatherchecker.view.CurrentView;
-import com.lwojtas.weatherchecker.view.DailyView;
-import com.lwojtas.weatherchecker.view.HourlyView;
-import com.lwojtas.weatherchecker.view.MinutelyView;
+import com.lwojtas.weatherchecker.model.GeocodeCity;
+import com.lwojtas.weatherchecker.util.GeocodeCall;
+import com.lwojtas.weatherchecker.util.LocaleTool;
+import com.lwojtas.weatherchecker.view.GeocodeView;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CityActivity extends AppCompatActivity {
 
-    private ViewFlipper viewFlipper;
+    private EditText nameEditText;
+    private EditText latEditText;
+    private EditText lonEditText;
+
     private City city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
+        findViews();
 
-        viewFlipper = findViewById(R.id.cityViewFlipper);
+        int cityIndex = getIntent().getIntExtra("index", -1);
+        if (cityIndex < 0)
+            setTitle(getResources().getString(R.string.city_title_new));
+        else {
+            setTitle(getResources().getString(R.string.city_title_modify));
 
-        try {
-            city = AppData.getCities().get(getIntent().getIntExtra("index", -1));
-
-            if (city != null) {
-                setTitle(city.getName() + " - " + getResources().getString(R.string.city_current_title));
-
-                initializeCurrentView(city.getCurrent());
-                initializeDailyView(city.getDaily());
-                initializeHourlyView(city.getHourly());
-                initializeMinutelyView(city.getMinutely());
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, this.getResources().getString(R.string.city_on_create_error_message), Toast.LENGTH_SHORT).show();
+            city = AppData.getCities().get(cityIndex);
+            nameEditText.setText(city.getName());
+            latEditText.setText(city.getLatAsString());
+            lonEditText.setText(city.getLonAsString());
         }
-
-        viewFlipper.setDisplayedChild(1);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.city_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleTool.setApplicationLocale(base, false));
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (city != null) {
-            int newDisplayItemIndex;
-            String newTitle = city.getName() + " - ";
+    public void onSaveButtonClick(View view) {
+        String name = nameEditText.getText().toString();
+        String latStr = latEditText.getText().toString();
+        String lonStr = lonEditText.getText().toString();
 
-            switch (item.getItemId()) {
-                case R.id.cityMenuCurrent:
-                    newDisplayItemIndex = 1;
-                    newTitle += getResources().getString(R.string.city_current_title);
-                    break;
-                case R.id.cityMenuDaily:
-                    newDisplayItemIndex = 2;
-                    newTitle += getResources().getString(R.string.city_daily_title);
-                    break;
-                case R.id.cityMenuHourly:
-                    newDisplayItemIndex = 3;
-                    newTitle += getResources().getString(R.string.city_hourly_title);
-                    break;
-                case R.id.cityMenuMinutely:
-                    newDisplayItemIndex = 4;
-                    newTitle += getResources().getString(R.string.city_minutely_title);
-                    break;
-                default:
-                    newDisplayItemIndex = viewFlipper.getDisplayedChild();
+        if (!name.isEmpty() && !latStr.isEmpty() && !lonStr.isEmpty()) {
+            Double lat = Double.parseDouble(latEditText.getText().toString());
+            Double lon = Double.parseDouble(lonEditText.getText().toString());
+
+            if (city == null) {
+                city = new City(name, lat, lon);
+                AppData.getCities().add(city);
+            } else {
+                city.setName(name);
+                city.setLat(lat);
+                city.setLon(lon);
             }
 
-            if (newDisplayItemIndex != viewFlipper.getDisplayedChild()) {
-                viewFlipper.setDisplayedChild(newDisplayItemIndex);
-                setTitle(newTitle);
+            setResult(1);
+            finish();
+        } else
+            Toast.makeText(this, this.getResources().getString(R.string.city_save_error_message), Toast.LENGTH_SHORT).show();
+    }
+
+    public void onSearchButtonClick(View view) {
+        String cityName = nameEditText.getText().toString();
+
+        if (!cityName.isEmpty()) {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Callable<List<GeocodeCity>> call = new GeocodeCall(cityName);
+            Future<List<GeocodeCity>> result = executor.submit(call);
+            try {
+                TableLayout tableLayout = findViewById(R.id.citySearchResultTableLayout);
+                GeocodeView geocodeView = new GeocodeView(result.get());
+                geocodeView.initialize(this, tableLayout, latEditText, lonEditText);
+            } catch (Exception e) {
+                Toast.makeText(this, this.getResources().getString(R.string.city_search_error_message), Toast.LENGTH_SHORT).show();
             }
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
-    private void initializeCurrentView(Current current) throws Exception {
-        ViewStub viewStub = findViewById(R.id.cityViewCurrentViewStub);
-        CurrentView currentView = new CurrentView(current);
-        currentView.initialize(this, viewStub);
-    }
-
-    private void initializeDailyView(Daily daily) throws Exception {
-        ViewStub viewStub = findViewById(R.id.cityViewDailyViewStub);
-        DailyView dailyView = new DailyView(daily);
-        dailyView.initialize(this, viewStub);
-    }
-
-    private void initializeHourlyView(Hourly hourly) throws Exception {
-        ViewStub viewStub = findViewById(R.id.cityViewHourlyViewStub);
-        HourlyView hourlyView = new HourlyView(hourly);
-        hourlyView.initialize(this, viewStub);
-    }
-
-    private void initializeMinutelyView(Minutely minutely) {
-        ViewStub viewStub = findViewById(R.id.cityViewMinutelyViewStub);
-        MinutelyView minutelyView = new MinutelyView(minutely);
-        minutelyView.initialize(this, viewStub);
+    private void findViews() {
+        nameEditText = findViewById(R.id.cityNameEditText);
+        latEditText = findViewById(R.id.cityLatEditText);
+        lonEditText = findViewById(R.id.cityLonEditText);
     }
 
 }

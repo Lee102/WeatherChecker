@@ -48,37 +48,37 @@ public class Temp {
     public String getDayAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(day, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(day, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getMinAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(min, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(min, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getMaxAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(max, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(max, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getNightAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(night, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(night, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getEveAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(eve, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(eve, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getMornAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(morn, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(morn, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
 }

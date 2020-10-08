@@ -2,13 +2,12 @@ package com.lwojtas.weatherchecker.model.city.container;
 
 import com.lwojtas.weatherchecker.model.AppData;
 import com.lwojtas.weatherchecker.model.Settings;
+import com.lwojtas.weatherchecker.util.LocaleTool;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -75,13 +74,12 @@ public class Common {
         return obj;
     }
 
-    protected static String getAsString(Double value, Integer decimals, Locale locale, String unit) {
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(decimals, RoundingMode.HALF_UP);
+    protected static String getAsString(double value, int decimals, Locale locale, String unit, boolean unitWithSpace) {
+        return LocaleTool.getDoubleAsString(value, decimals, locale, unit, unitWithSpace);
+    }
 
-        String pattern = "%." + decimals + "f";
-
-        return String.format(locale, pattern, bd.doubleValue()) + " " + unit;
+    public Date getDt() {
+        return dt;
     }
 
     public String getDtAsString(String pattern) {
@@ -94,31 +92,31 @@ public class Common {
     public String getPressureAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(pressure, settings.getDecimals(), settings.getLocale(), "hPa");
+        return getAsString(pressure, settings.getDecimals(), settings.getLocale(), "hPa", true);
     }
 
     public String getHumidityAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(humidity, settings.getDecimals(), settings.getLocale(), "%");
+        return getAsString(humidity, settings.getDecimals(), settings.getLocale(), "%", false);
     }
 
     public String getDewPointAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(dewPoint, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(dewPoint, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getCloudsAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(clouds, settings.getDecimals(), settings.getLocale(), "%");
+        return getAsString(clouds, settings.getDecimals(), settings.getLocale(), "%", false);
     }
 
     public String getWindSpeedAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(windSpeed, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED));
+        return getAsString(windSpeed, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED), true);
     }
 
     public boolean windGustExists() {
@@ -129,7 +127,7 @@ public class Common {
         if (windGust != null) {
             Settings settings = AppData.getSettings();
 
-            return getAsString(windGust, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED));
+            return getAsString(windGust, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.WIND_SPEED), true);
         } else
             return null;
     }
@@ -137,7 +135,7 @@ public class Common {
     public String getWindDegAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(windDeg, settings.getDecimals(), settings.getLocale(), "°");
+        return getAsString(windDeg, settings.getDecimals(), settings.getLocale(), "°", false);
     }
 
     public List<Weather> getWeather() {

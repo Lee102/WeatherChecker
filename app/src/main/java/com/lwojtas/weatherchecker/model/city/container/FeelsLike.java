@@ -40,25 +40,25 @@ public class FeelsLike {
     public String getMornAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(morn, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(morn, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getDayAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(day, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(day, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getEveAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(eve, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(eve, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getNightAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(night, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(night, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
 }

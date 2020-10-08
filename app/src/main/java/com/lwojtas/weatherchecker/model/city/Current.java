@@ -87,25 +87,25 @@ public class Current extends Common {
     public String getTempAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(temp, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(temp, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getFeelsLikeAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(feelsLike, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP));
+        return getAsString(feelsLike, settings.getPreciseDecimals(), settings.getLocale(), settings.getUnitString(Settings.UnitType.TEMP), false);
     }
 
     public String getUviAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(uvi, settings.getPreciseDecimals(), settings.getLocale(), "");
+        return getAsString(uvi, settings.getPreciseDecimals(), settings.getLocale(), "", false);
     }
 
     public String getVisibilityAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(visibility, settings.getDecimals(), settings.getLocale(), "m");
+        return getAsString(visibility, settings.getDecimals(), settings.getLocale(), "m", true);
     }
 
     public boolean rain1hExists() {
@@ -116,7 +116,7 @@ public class Current extends Common {
         if (rain1h != null) {
             Settings settings = AppData.getSettings();
 
-            return getAsString(rain1h, settings.getPreciseDecimals(), settings.getLocale(), "mm");
+            return getAsString(rain1h, settings.getPreciseDecimals(), settings.getLocale(), "mm", true);
         } else
             return null;
     }
@@ -129,7 +129,7 @@ public class Current extends Common {
         if (snow1h != null) {
             Settings settings = AppData.getSettings();
 
-            return getAsString(snow1h, settings.getPreciseDecimals(), settings.getLocale(), "mm");
+            return getAsString(snow1h, settings.getPreciseDecimals(), settings.getLocale(), "mm", true);
         } else
             return null;
     }

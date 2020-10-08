@@ -85,13 +85,13 @@ public class DailyValue extends Common {
     public String getUviAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(uvi, settings.getPreciseDecimals(), settings.getLocale(), "");
+        return getAsString(uvi, settings.getPreciseDecimals(), settings.getLocale(), "", false);
     }
 
     public String getPopAsString() {
         Settings settings = AppData.getSettings();
 
-        return getAsString(pop * 100, settings.getDecimals(), settings.getLocale(), "%");
+        return getAsString(pop * 100, settings.getDecimals(), settings.getLocale(), "%", false);
     }
 
     public boolean rainExists() {
@@ -102,7 +102,7 @@ public class DailyValue extends Common {
         if (rain != null) {
             Settings settings = AppData.getSettings();
 
-            return getAsString(rain, settings.getPreciseDecimals(), settings.getLocale(), "mm");
+            return getAsString(rain, settings.getPreciseDecimals(), settings.getLocale(), "mm", true);
         } else
             return null;
     }
@@ -115,7 +115,7 @@ public class DailyValue extends Common {
         if (snow != null) {
             Settings settings = AppData.getSettings();
 
-            return getAsString(snow, settings.getPreciseDecimals(), settings.getLocale(), "mm");
+            return getAsString(snow, settings.getPreciseDecimals(), settings.getLocale(), "mm", true);
         } else
             return null;
     }

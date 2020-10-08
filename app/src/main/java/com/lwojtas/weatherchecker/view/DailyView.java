@@ -3,7 +3,6 @@ package com.lwojtas.weatherchecker.view;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,21 +13,41 @@ import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Daily;
 import com.lwojtas.weatherchecker.model.city.container.DailyValue;
 
-import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DailyView extends ViewInitializer {
 
     private final Daily DAILY;
+    private final List<TableRow> tableRows;
 
     public DailyView(Daily daily) {
         this.DAILY = daily;
+        tableRows = new ArrayList<>();
+    }
+
+    public void callOnClick(List<Integer> indexes) {
+        for (Integer i : indexes)
+            tableRows.get(i).callOnClick();
+    }
+
+    public ArrayList<Integer> getExpandedIndexes() {
+        ArrayList<Integer> indexes = new ArrayList<>();
+
+        for (int i = 0; i < tableRows.size(); i++) {
+            TableRow row = tableRows.get(i);
+            if ((Boolean) row.getChildAt(0).getTag())
+                indexes.add(i);
+        }
+
+        return indexes;
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
-        stub.setLayoutResource(R.layout.city_common);
+        stub.setLayoutResource(R.layout.weather_common);
         View view = stub.inflate();
 
-        LinearLayout linearLayout = view.findViewById(R.id.cityCommonLinearLayout);
+        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
         linearLayout.addView(buildRecordsTable(context));
     }
 
@@ -59,12 +78,13 @@ public class DailyView extends ViewInitializer {
                         row.removeAllViews();
                         row.addView(linearLayout);
                     } catch (Exception e) {
-                        Toast.makeText(v.getContext(), v.getResources().getString(R.string.city_daily_on_click_error_message), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), v.getResources().getString(R.string.weather_daily_on_click_error_message), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
 
             tableLayout.addView(row);
+            tableRows.add(row);
 
             even = !even;
         }
@@ -73,39 +93,10 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildCollapsedView(Context context, DailyValue val) throws Exception {
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout linearLayout = buildLongHeaderLinearLayout(context, val.getWeather(),
+                val.getDtAsString("E"), val.getTemp().getDayAsString(), val.getRainAsString(), val.getSnowAsString());
         linearLayout.setTag(Boolean.FALSE);
 
-        ImageView imageView = new ImageView(context);
-        Field field = (R.drawable.class).getDeclaredField("w" + val.getWeather().get(0).getIcon());
-        imageView.setImageResource(field.getInt(field));
-        linearLayout.addView(imageView);
-
-        TableLayout tableLayout = buildTableLayout(context);
-        TableRow row;
-
-        row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, val.getDtAsString("E")));
-        String rain = context.getResources().getString(R.string.weather_rain_r) + ": ";
-        if (val.rainExists())
-            rain += val.getRainAsString();
-        else
-            rain += "-";
-        row.addView(buildTableRowTextView(context, rain));
-        tableLayout.addView(row);
-
-        row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, val.getTemp().getDayAsString()));
-        String snow = context.getResources().getString(R.string.weather_snow_s) + ": ";
-        if (val.snowExists())
-            snow += val.getSnowAsString();
-        else
-            snow += "-";
-        row.addView(buildTableRowTextView(context, snow));
-        tableLayout.addView(row);
-
-        linearLayout.addView(tableLayout);
         return linearLayout;
     }
 
@@ -123,29 +114,9 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedViewHeader(Context context, DailyValue val) throws Exception {
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout linearLayout = buildShortHeaderLinearLayout(context, val.getWeather(), val.getDtAsString("d-MM-yyyy"));
         linearLayout.setBackgroundColor(context.getColor(R.color.headerRowColor));
 
-        ImageView imageView = new ImageView(context);
-        Field field = (R.drawable.class).getDeclaredField("w" + val.getWeather().get(0).getIcon());
-        imageView.setImageResource(field.getInt(field));
-        linearLayout.addView(imageView);
-
-        TableLayout tableLayout = buildTableLayout(context);
-        TableRow row;
-
-        row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, context.getResources().getString(R.string.weather_date)));
-        row.addView(buildTableRowTextView(context, val.getDtAsString("d-MM-yyyy")));
-        tableLayout.addView(row);
-
-        row = buildTableRow(context, false, false);
-        row.addView(buildTableRowTextView(context, ""));
-        row.addView(buildTableRowTextView(context, val.getWeather().get(0).getDescription()));
-        tableLayout.addView(row);
-
-        linearLayout.addView(tableLayout);
         return linearLayout;
     }
 
