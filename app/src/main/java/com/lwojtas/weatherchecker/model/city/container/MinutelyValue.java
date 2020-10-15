@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+import java.util.TimeZone;
 
 import static com.lwojtas.weatherchecker.model.city.container.Common.getAsString;
 
@@ -19,15 +19,19 @@ public class MinutelyValue {
     private final String PRECIPITATION_JSON = "precipitation";
     private Double precipitation;
 
-    public MinutelyValue(JSONObject obj, Long timezoneOffset) throws JSONException {
-        dt = new Date((obj.getLong(DT_JSON) + timezoneOffset) * 1000);
+    private TimeZone timeZone;
+
+    public MinutelyValue(JSONObject obj, TimeZone timeZone) throws JSONException {
+        dt = new Date(obj.getLong(DT_JSON) * 1000);
         precipitation = obj.getDouble(PRECIPITATION_JSON);
+
+        this.timeZone = timeZone;
     }
 
-    public JSONObject toJSON(Long timezoneOffset) throws JSONException {
+    public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        long dt = this.dt.getTime() / 1000 - timezoneOffset;
+        long dt = this.dt.getTime() / 1000;
         obj.put(DT_JSON, dt);
         obj.put(PRECIPITATION_JSON, precipitation);
 
@@ -35,7 +39,8 @@ public class MinutelyValue {
     }
 
     public String getDtAsString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", new Locale("en"));
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", AppData.getSettings().getLocale());
+        sdf.setTimeZone(timeZone);
 
         return sdf.format(dt);
     }

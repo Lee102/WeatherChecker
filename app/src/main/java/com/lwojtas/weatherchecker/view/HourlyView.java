@@ -12,10 +12,15 @@ import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Hourly;
 import com.lwojtas.weatherchecker.model.city.container.HourlyValue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HourlyView extends ViewInitializer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(HourlyView.class);
 
     private final Hourly HOURLY;
     private final List<TableRow> tableRows;
@@ -26,11 +31,16 @@ public class HourlyView extends ViewInitializer {
     }
 
     public void callOnClick(List<Integer> indexes) {
-        for (Integer i : indexes)
-            tableRows.get(i).callOnClick();
+        LOG.trace("callOnClick");
+
+        if (indexes != null)
+            for (Integer i : indexes)
+                tableRows.get(i).callOnClick();
     }
 
     public ArrayList<Integer> getExpandedIndexes() {
+        LOG.trace("getExpandedIndexes");
+
         ArrayList<Integer> indexes = new ArrayList<>();
 
         for (int i = 0; i < tableRows.size(); i++) {
@@ -43,14 +53,20 @@ public class HourlyView extends ViewInitializer {
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
-        stub.setLayoutResource(R.layout.weather_common);
-        View view = stub.inflate();
+        LOG.trace("initialize");
 
-        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
-        linearLayout.addView(buildRecordsTable(context));
+        if (context != null && stub != null && HOURLY != null) {
+            stub.setLayoutResource(R.layout.weather_common);
+            View view = stub.inflate();
+
+            LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
+            linearLayout.addView(buildRecordsTable(context));
+        }
     }
 
     private TableLayout buildRecordsTable(final Context CONTEXT) throws Exception {
+        LOG.trace("buildRecordsTable");
+
         TableLayout tableLayout = buildTableLayout(CONTEXT);
 
         boolean even = false;
@@ -63,8 +79,12 @@ public class HourlyView extends ViewInitializer {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    LOG.trace("hourlyView onClick");
+
                     TableRow row = (TableRow) v;
                     HourlyValue val = (HourlyValue) v.getTag();
+
+                    LOG.debug("hourlyView onClick - dt: " + val.getDt().toString());
 
                     try {
                         LinearLayout linearLayout;
@@ -77,6 +97,8 @@ public class HourlyView extends ViewInitializer {
                         row.removeAllViews();
                         row.addView(linearLayout);
                     } catch (Exception e) {
+                        LOG.error("hourlyView onClick error" + e.getMessage());
+
                         Toast.makeText(v.getContext(), v.getResources().getString(R.string.weather_hourly_on_click_error_message), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -92,6 +114,8 @@ public class HourlyView extends ViewInitializer {
     }
 
     private LinearLayout buildCollapsedView(Context context, HourlyValue val) throws Exception {
+        LOG.trace("buildCollapsedView");
+
         LinearLayout linearLayout = buildLongHeaderLinearLayout(context, val.getWeather(),
                 val.getDtAsString("HH:mm"), val.getTempAsString(), val.getRain1hAsString(), val.getSnow1hAsString());
         linearLayout.setTag(Boolean.FALSE);
@@ -100,6 +124,8 @@ public class HourlyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedView(Context context, HourlyValue val) throws Exception {
+        LOG.trace("buildExpandedView");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setTag(Boolean.TRUE);
@@ -111,6 +137,8 @@ public class HourlyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedViewHeader(Context context, HourlyValue val) throws Exception {
+        LOG.trace("buildExpandedViewHeader");
+
         LinearLayout linearLayout = buildShortHeaderLinearLayout(context, val.getWeather(), val.getDtAsString("d-MM-yyyy"));
         linearLayout.setBackgroundColor(context.getColor(R.color.headerRowColor));
 
@@ -118,6 +146,8 @@ public class HourlyView extends ViewInitializer {
     }
 
     private TableLayout buildExpandedViewRest(Context context, HourlyValue val) {
+        LOG.trace("buildExpandedViewRest");
+
         TableLayout tableLayout = buildTableLayout(context);
         TableRow row;
 

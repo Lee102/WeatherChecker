@@ -5,15 +5,12 @@ import org.json.JSONObject;
 
 public class Weather {
 
-    private final String MAIN_JSON = "main";
-    private String main;
     private final String DESCRIPTION_JSON = "description";
     private String description;
     private final String ICON_JSON = "icon";
     private String icon;
 
     public Weather(JSONObject obj) throws JSONException {
-        main = obj.getString(MAIN_JSON);
         description = formatDescription(obj.getString(DESCRIPTION_JSON));
         icon = obj.getString(ICON_JSON);
     }
@@ -21,7 +18,6 @@ public class Weather {
     public JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        obj.put(MAIN_JSON, main);
         obj.put(DESCRIPTION_JSON, description);
         obj.put(ICON_JSON, icon);
 

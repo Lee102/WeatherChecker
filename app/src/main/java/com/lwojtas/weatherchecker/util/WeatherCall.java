@@ -5,6 +5,8 @@ import com.lwojtas.weatherchecker.model.City;
 import com.lwojtas.weatherchecker.model.Settings;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,6 +21,8 @@ import java.util.concurrent.Callable;
 
 public class WeatherCall implements Callable<Void> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(WeatherCall.class);
+
     private final City CITY;
 
     public WeatherCall(City city) {
@@ -27,6 +31,8 @@ public class WeatherCall implements Callable<Void> {
 
     @Override
     public Void call() throws Exception {
+        LOG.trace("call");
+
         Settings settings = AppData.getSettings();
 
         URL url = new URL("https://api.openweathermap.org/data/2.5/onecall?" +

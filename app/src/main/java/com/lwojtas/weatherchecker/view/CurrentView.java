@@ -10,7 +10,12 @@ import android.widget.TableRow;
 import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Current;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class CurrentView extends ViewInitializer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CurrentView.class);
 
     private final Current CURRENT;
 
@@ -19,15 +24,21 @@ public class CurrentView extends ViewInitializer {
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
-        stub.setLayoutResource(R.layout.weather_common);
-        View view = stub.inflate();
+        LOG.trace("initialize");
 
-        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
-        linearLayout.addView(buildHeaderLinearLayout(context));
-        linearLayout.addView(buildRecordsTableLayout(context));
+        if (context != null && stub != null && CURRENT != null) {
+            stub.setLayoutResource(R.layout.weather_common);
+            View view = stub.inflate();
+
+            LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
+            linearLayout.addView(buildHeaderLinearLayout(context));
+            linearLayout.addView(buildRecordsTableLayout(context));
+        }
     }
 
     private LinearLayout buildHeaderLinearLayout(Context context) throws Exception {
+        LOG.trace("buildHeaderLinearLayout");
+
         LinearLayout linearLayout = buildShortHeaderLinearLayout(context, CURRENT.getWeather(), CURRENT.getDtAsString("d-MM-yyyy"));
         linearLayout.setBackgroundColor(context.getColor(R.color.headerRowColor));
 
@@ -35,6 +46,8 @@ public class CurrentView extends ViewInitializer {
     }
 
     private TableLayout buildRecordsTableLayout(Context context) {
+        LOG.trace("buildRecordsTableLayout");
+
         TableLayout tableLayout = buildTableLayout(context);
         TableRow row;
 

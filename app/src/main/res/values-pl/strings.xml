@@ -61,6 +61,8 @@
     <string name="city_lon">Długość</string>
     <string name="city_save">Zapisz</string>
     <string name="city_search">Szukaj</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Szerokość/Długość geograficzna nie może przekraczać 180°</string>
+    <string name="city_double_parse_error_message">Błąd parsowania szerokości/długości geograficznej</string>
     <string name="city_save_error_message">Wypełnij pola nazwa, szerokość i długość</string>
     <string name="city_search_error_message">Błąd podczas wyszukiwania miasta</string>
 
@@ -69,12 +71,17 @@
     <string name="settings_decimals">Miejsca dziesiętne</string>
     <string name="settings_precise_decimals">Miejsca dziesiętne danych precyzyjnych</string>
     <string name="settings_weather_actual_threshold">Pogoda nieaktualna po</string>
-    <string name="settings_weather_actual_threshold_end">godzinach</string>
+    <string name="settings_weather_actual_threshold_end">godzinie</string>
+    <string name="settings_weather_actual_threshold_end_plural">godzinach</string>
     <string name="settings_language">Język</string>
     <string name="settings_update_mode">Aktualizacja przy starcie</string>
     <string name="settings_update_mode_on">Wł</string>
     <string name="settings_update_mode_off">Wył</string>
+    <string name="settings_log_mode">Tryb logowania</string>
     <string name="settings_save">Zapisz</string>
+    <string name="settings_negative_number_error_message">"Miejsca dziesiętne"/"Miejsca dziesiętne danych precyzyjnych"/"Pogoda nieaktualna po" nie mogą być mniejsze od 1</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread pool" nie mogą być mniejsze od 1</string>
+    <string name="settings_save_error_message">Bład podczas zapisywania ustawień</string>
     <string-array name="settings_units_array">
         <item>Standardowe (K + m/s)</item>
         <item>Metryczne (°C + m/s)</item>

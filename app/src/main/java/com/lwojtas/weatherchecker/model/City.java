@@ -4,11 +4,13 @@ import com.lwojtas.weatherchecker.model.city.Current;
 import com.lwojtas.weatherchecker.model.city.Daily;
 import com.lwojtas.weatherchecker.model.city.Hourly;
 import com.lwojtas.weatherchecker.model.city.Minutely;
+import com.lwojtas.weatherchecker.util.exception.CoordinateOutOfBoundsException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import static com.lwojtas.weatherchecker.util.LocaleTool.getDoubleAsString;
@@ -21,8 +23,8 @@ public class City {
     private Double lat;
     private final String LON_JSON = "lon";
     private Double lon;
-    private final String TIMEZONE_OFFSET_JSON = "timezone_offset";
-    private Long timezoneOffset;
+    private final String TIMEZONE_JSON = "timezone";
+    private TimeZone timezone;
     private final String CURRENT_JSON = "current";
     private Current current;
     private final String MINUTELY_JSON = "minutely";
@@ -46,15 +48,17 @@ public class City {
     public void fromJSON(JSONObject obj) throws JSONException {
         lat = obj.getDouble(LAT_JSON);
         lon = obj.getDouble(LON_JSON);
-        timezoneOffset = obj.getLong(TIMEZONE_OFFSET_JSON);
+
+        if (obj.has(TIMEZONE_JSON))
+            timezone = TimeZone.getTimeZone(obj.getString(TIMEZONE_JSON));
         if (obj.has(CURRENT_JSON))
-            current = new Current(obj.getJSONObject(CURRENT_JSON), timezoneOffset);
+            current = new Current(obj.getJSONObject(CURRENT_JSON), timezone);
         if (obj.has(MINUTELY_JSON))
-            minutely = new Minutely(obj.getJSONArray(MINUTELY_JSON), timezoneOffset);
+            minutely = new Minutely(obj.getJSONArray(MINUTELY_JSON), timezone);
         if (obj.has(HOURLY_JSON))
-            hourly = new Hourly(obj.getJSONArray(HOURLY_JSON), timezoneOffset);
+            hourly = new Hourly(obj.getJSONArray(HOURLY_JSON), timezone);
         if (obj.has(DAILY_JSON))
-            daily = new Daily(obj.getJSONArray(DAILY_JSON), timezoneOffset);
+            daily = new Daily(obj.getJSONArray(DAILY_JSON), timezone);
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -62,26 +66,31 @@ public class City {
         obj.put(NAME_JSON, name);
         obj.put(LAT_JSON, lat);
         obj.put(LON_JSON, lon);
-        obj.put(TIMEZONE_OFFSET_JSON, timezoneOffset);
+
+        if (timezone != null)
+            obj.put(TIMEZONE_JSON, timezone.getID());
         if (current != null)
-            obj.put(CURRENT_JSON, current.toJSON(timezoneOffset));
+            obj.put(CURRENT_JSON, current.toJSON());
         if (minutely != null)
-            obj.put(MINUTELY_JSON, minutely.toJSON(timezoneOffset));
+            obj.put(MINUTELY_JSON, minutely.toJSON());
         if (hourly != null)
-            obj.put(HOURLY_JSON, hourly.toJSON(timezoneOffset));
+            obj.put(HOURLY_JSON, hourly.toJSON());
         if (daily != null)
-            obj.put(DAILY_JSON, daily.toJSON(timezoneOffset));
+            obj.put(DAILY_JSON, daily.toJSON());
         return obj;
     }
 
+    public boolean isInitialized() {
+        return timezone != null && current != null;
+    }
+
     public Boolean isActual() {
-        if (current == null || minutely == null || hourly == null || daily == null)
-            return null;
-        else {
+        if (current != null) {
             Date currentDate = new Date();
             long diff = currentDate.getTime() - current.getDt().getTime();
             return TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < AppData.getSettings().getWeatherActualThreshold();
-        }
+        } else
+            return null;
     }
 
     public String getName() {
@@ -102,7 +111,10 @@ public class City {
         return getDoubleAsString(lat, settings.getPreciseDecimals(), settings.getLocale(), "", false);
     }
 
-    public void setLat(Double lat) {
+    public void setLat(Double lat) throws CoordinateOutOfBoundsException {
+        if (lat < -180d || lat > 180d)
+            throw new CoordinateOutOfBoundsException();
+
         this.lat = lat;
     }
 
@@ -116,7 +128,10 @@ public class City {
         return getDoubleAsString(lon, settings.getPreciseDecimals(), settings.getLocale(), "", false);
     }
 
-    public void setLon(Double lon) {
+    public void setLon(Double lon) throws CoordinateOutOfBoundsException {
+        if (lon < -180d || lon > 180d)
+            throw new CoordinateOutOfBoundsException();
+
         this.lon = lon;
     }
 

@@ -7,23 +7,24 @@ import org.json.JSONException;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Hourly {
 
     private final List<HourlyValue> VALUES;
 
-    public Hourly(JSONArray arr, Long timezoneOffset) throws JSONException {
+    public Hourly(JSONArray arr, TimeZone timeZone) throws JSONException {
         VALUES = new LinkedList<>();
 
         for (int i = 0; i < arr.length(); i++)
-            VALUES.add(new HourlyValue(arr.getJSONObject(i), timezoneOffset));
+            VALUES.add(new HourlyValue(arr.getJSONObject(i), timeZone));
     }
 
-    public JSONArray toJSON(Long timezoneOffset) throws JSONException {
+    public JSONArray toJSON() throws JSONException {
         JSONArray arr = new JSONArray();
 
         for (HourlyValue val : VALUES)
-            arr.put(val.toJSON(timezoneOffset));
+            arr.put(val.toJSON());
 
         return arr;
     }

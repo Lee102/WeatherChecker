@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+import java.util.TimeZone;
 
 public class Current extends Common {
 
@@ -31,10 +31,13 @@ public class Current extends Common {
     private Double snow1h;
     private final String H1_JSON = "1h";
 
-    public Current(JSONObject obj, Long timezoneOffset) throws JSONException {
-        super(obj, timezoneOffset);
-        sunrise = new Date((obj.getLong(SUNRISE_JSON) + timezoneOffset) * 1000);
-        sunset = new Date((obj.getLong(SUNSET_JSON) + timezoneOffset) * 1000);
+    private TimeZone timeZone;
+
+    public Current(JSONObject obj, TimeZone timeZone) throws JSONException {
+        super(obj, timeZone);
+
+        sunrise = new Date(obj.getLong(SUNRISE_JSON) * 1000);
+        sunset = new Date(obj.getLong(SUNSET_JSON) * 1000);
         temp = obj.getDouble(TEMP_JSON);
         feelsLike = obj.getDouble(FEELS_LIKE_JSON);
         uvi = obj.getDouble(UVI_JSON);
@@ -43,14 +46,16 @@ public class Current extends Common {
             rain1h = obj.getJSONObject(RAIN_1H_JSON).getDouble(H1_JSON);
         if (obj.has(SNOW_1H_JSON))
             snow1h = obj.getJSONObject(SNOW_1H_JSON).getDouble(H1_JSON);
+
+        this.timeZone = timeZone;
     }
 
-    public JSONObject toJSON(Long timezoneOffset) throws JSONException {
-        JSONObject obj = super.toJSON(timezoneOffset);
+    public JSONObject toJSON() throws JSONException {
+        JSONObject obj = super.toJSON();
 
-        long sunrise = this.sunrise.getTime() / 1000 - timezoneOffset;
+        long sunrise = this.sunrise.getTime() / 1000;
         obj.put(SUNRISE_JSON, sunrise);
-        long sunset = this.sunset.getTime() / 1000 - timezoneOffset;
+        long sunset = this.sunset.getTime() / 1000;
         obj.put(SUNSET_JSON, sunset);
         obj.put(TEMP_JSON, temp);
         obj.put(FEELS_LIKE_JSON, feelsLike);
@@ -73,13 +78,15 @@ public class Current extends Common {
     }
 
     public String getSunriseAsString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", new Locale("en"));
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", AppData.getSettings().getLocale());
+        sdf.setTimeZone(timeZone);
 
         return sdf.format(sunrise);
     }
 
     public String getSunsetAsString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", new Locale("en"));
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", AppData.getSettings().getLocale());
+        sdf.setTimeZone(timeZone);
 
         return sdf.format(sunset);
     }

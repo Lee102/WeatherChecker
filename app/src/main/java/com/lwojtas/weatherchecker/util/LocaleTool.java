@@ -7,31 +7,44 @@ import android.content.res.Configuration;
 import com.lwojtas.weatherchecker.MainActivity;
 import com.lwojtas.weatherchecker.model.AppData;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
 
 public class LocaleTool {
 
+    private static final Logger LOG = LoggerFactory.getLogger(LocaleTool.class);
+
     public static Context setApplicationLocale(Context context, boolean settingsChangeLocale) {
-        Locale locale = AppData.getSettings().getLocale();
-        Configuration config = new Configuration(context.getResources().getConfiguration());
+        LOG.trace("setApplicationLocale");
 
-        Locale.setDefault(locale);
+        if (context != null) {
+            Locale locale = AppData.getSettings().getLocale();
+            Configuration config = new Configuration(context.getResources().getConfiguration());
 
-        config.setLocale(locale);
-        context = context.createConfigurationContext(config);
+            Locale.setDefault(locale);
 
-        if (settingsChangeLocale) {
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            context.startActivity(intent);
+            config.setLocale(locale);
+            context = context.createConfigurationContext(config);
+
+            if (settingsChangeLocale) {
+                LOG.info("setApplicationLocale - new locale: " + locale.toLanguageTag());
+
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+            }
         }
 
         return context;
     }
 
     public static String getDoubleAsString(double value, int decimals, Locale locale, String unit, boolean unitWithSpace) {
+        LOG.trace("getDoubleAsString");
+
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(decimals, RoundingMode.HALF_UP);
 

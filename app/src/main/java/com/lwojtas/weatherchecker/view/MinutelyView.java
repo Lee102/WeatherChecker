@@ -11,7 +11,12 @@ import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Minutely;
 import com.lwojtas.weatherchecker.model.city.container.MinutelyValue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MinutelyView extends ViewInitializer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MinutelyView.class);
 
     private final Minutely MINUTELY;
 
@@ -20,14 +25,20 @@ public class MinutelyView extends ViewInitializer {
     }
 
     public void initialize(Context context, ViewStub stub) {
-        stub.setLayoutResource(R.layout.weather_common);
-        View view = stub.inflate();
+        LOG.trace("initialize");
 
-        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
-        linearLayout.addView(buildRecordsTable(context));
+        if (context != null && stub != null && MINUTELY != null) {
+            stub.setLayoutResource(R.layout.weather_common);
+            View view = stub.inflate();
+
+            LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
+            linearLayout.addView(buildRecordsTable(context));
+        }
     }
 
     private TableLayout buildRecordsTable(Context context) {
+        LOG.trace("buildRecordsTable");
+
         TableLayout tableLayout = buildTableLayout(context);
 
         tableLayout.addView(buildTableHeader(context));
@@ -48,6 +59,8 @@ public class MinutelyView extends ViewInitializer {
     }
 
     private TableRow buildTableHeader(Context context) {
+        LOG.trace("buildTableHeader");
+
         TableRow row = buildTableRow(context, true, false);
 
         row.addView(buildTableHeaderTextView(context, context.getResources().getString(R.string.weather_date)));

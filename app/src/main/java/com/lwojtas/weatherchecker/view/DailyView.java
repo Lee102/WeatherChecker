@@ -13,10 +13,15 @@ import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.Daily;
 import com.lwojtas.weatherchecker.model.city.container.DailyValue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DailyView extends ViewInitializer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DailyView.class);
 
     private final Daily DAILY;
     private final List<TableRow> tableRows;
@@ -27,11 +32,16 @@ public class DailyView extends ViewInitializer {
     }
 
     public void callOnClick(List<Integer> indexes) {
-        for (Integer i : indexes)
-            tableRows.get(i).callOnClick();
+        LOG.trace("callOnClick");
+
+        if (indexes != null)
+            for (Integer i : indexes)
+                tableRows.get(i).callOnClick();
     }
 
     public ArrayList<Integer> getExpandedIndexes() {
+        LOG.trace("getExpandedIndexes");
+
         ArrayList<Integer> indexes = new ArrayList<>();
 
         for (int i = 0; i < tableRows.size(); i++) {
@@ -44,14 +54,20 @@ public class DailyView extends ViewInitializer {
     }
 
     public void initialize(Context context, ViewStub stub) throws Exception {
-        stub.setLayoutResource(R.layout.weather_common);
-        View view = stub.inflate();
+        LOG.trace("initialize");
 
-        LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
-        linearLayout.addView(buildRecordsTable(context));
+        if (context != null && stub != null && DAILY != null) {
+            stub.setLayoutResource(R.layout.weather_common);
+            View view = stub.inflate();
+
+            LinearLayout linearLayout = view.findViewById(R.id.weatherCommonLinearLayout);
+            linearLayout.addView(buildRecordsTable(context));
+        }
     }
 
     private TableLayout buildRecordsTable(final Context CONTEXT) throws Exception {
+        LOG.trace("buildRecordsTable");
+
         TableLayout tableLayout = buildTableLayout(CONTEXT);
 
         boolean even = false;
@@ -64,8 +80,12 @@ public class DailyView extends ViewInitializer {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    LOG.trace("dailyView onClick");
+
                     TableRow row = (TableRow) v;
                     DailyValue val = (DailyValue) v.getTag();
+
+                    LOG.debug("dailyVIew onClick - dt: " + val.getDt().toString());
 
                     try {
                         LinearLayout linearLayout;
@@ -78,6 +98,8 @@ public class DailyView extends ViewInitializer {
                         row.removeAllViews();
                         row.addView(linearLayout);
                     } catch (Exception e) {
+                        LOG.error("dailyView onClick error" + e.getMessage());
+
                         Toast.makeText(v.getContext(), v.getResources().getString(R.string.weather_daily_on_click_error_message), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -93,6 +115,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildCollapsedView(Context context, DailyValue val) throws Exception {
+        LOG.trace("buildCollapsedView");
+
         LinearLayout linearLayout = buildLongHeaderLinearLayout(context, val.getWeather(),
                 val.getDtAsString("E"), val.getTemp().getDayAsString(), val.getRainAsString(), val.getSnowAsString());
         linearLayout.setTag(Boolean.FALSE);
@@ -101,6 +125,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedView(Context context, DailyValue val) throws Exception {
+        LOG.trace("buildExpandedView");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setTag(Boolean.TRUE);
@@ -114,6 +140,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedViewHeader(Context context, DailyValue val) throws Exception {
+        LOG.trace("buildExpandedViewHeader");
+
         LinearLayout linearLayout = buildShortHeaderLinearLayout(context, val.getWeather(), val.getDtAsString("d-MM-yyyy"));
         linearLayout.setBackgroundColor(context.getColor(R.color.headerRowColor));
 
@@ -121,6 +149,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedViewTemp(Context context, DailyValue val) {
+        LOG.trace("buildExpandedViewTemp");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -154,6 +184,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private LinearLayout buildExpandedViewFeelsLike(Context context, DailyValue val) {
+        LOG.trace("buildExpandedViewFeelsLike");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -183,6 +215,8 @@ public class DailyView extends ViewInitializer {
     }
 
     private TableLayout buildExpandedViewRest(Context context, DailyValue val) {
+        LOG.trace("buildExpandedViewRest");
+
         TableLayout tableLayout = buildTableLayout(context);
         TableRow row;
 

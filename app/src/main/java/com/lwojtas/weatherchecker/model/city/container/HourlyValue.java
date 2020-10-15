@@ -6,6 +6,8 @@ import com.lwojtas.weatherchecker.model.Settings;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.TimeZone;
+
 public class HourlyValue extends Common {
 
     private final String TEMP_JSON = "temp";
@@ -22,8 +24,9 @@ public class HourlyValue extends Common {
     private Double snow1h;
     private final String H1_JSON = "1h";
 
-    public HourlyValue(JSONObject obj, Long timezoneOffset) throws JSONException {
-        super(obj, timezoneOffset);
+    public HourlyValue(JSONObject obj, TimeZone timeZone) throws JSONException {
+        super(obj, timeZone);
+
         temp = obj.getDouble(TEMP_JSON);
         feelsLike = obj.getDouble(FEELS_LIKE_JSON);
         visibility = obj.getDouble(VISIBILITY_JSON);
@@ -34,8 +37,8 @@ public class HourlyValue extends Common {
             snow1h = obj.getJSONObject(SNOW_1H_JSON).getDouble(H1_JSON);
     }
 
-    public JSONObject toJSON(Long timezoneOffset) throws JSONException {
-        JSONObject obj = super.toJSON(timezoneOffset);
+    public JSONObject toJSON() throws JSONException {
+        JSONObject obj = super.toJSON();
 
         obj.put(TEMP_JSON, temp);
         obj.put(FEELS_LIKE_JSON, feelsLike);

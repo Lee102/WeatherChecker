@@ -13,8 +13,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
-public class Common {
+public abstract class Common {
 
     private final String DT_JSON = "dt";
     private Date dt;
@@ -35,8 +36,10 @@ public class Common {
     private final String WEATHER_JSON = "weather";
     private List<Weather> weather;
 
-    public Common(JSONObject obj, Long timezoneOffset) throws JSONException {
-        dt = new Date((obj.getLong(DT_JSON) + timezoneOffset) * 1000);
+    private TimeZone timeZone;
+
+    public Common(JSONObject obj, TimeZone timeZone) throws JSONException {
+        dt = new Date(obj.getLong(DT_JSON) * 1000);
         pressure = obj.getDouble(PRESSURE_JSON);
         humidity = obj.getDouble(HUMIDITY_JSON);
         dewPoint = obj.getDouble(DEW_POINT_JSON);
@@ -50,12 +53,14 @@ public class Common {
         JSONArray arr = obj.getJSONArray(WEATHER_JSON);
         for (int i = 0; i < arr.length(); i++)
             weather.add(new Weather(arr.getJSONObject(i)));
+
+        this.timeZone = timeZone;
     }
 
-    protected JSONObject toJSON(Long timezoneOffset) throws JSONException {
+    protected JSONObject toJSON() throws JSONException {
         JSONObject obj = new JSONObject();
 
-        long dt = this.dt.getTime() / 1000 - timezoneOffset;
+        long dt = this.dt.getTime() / 1000;
         obj.put(DT_JSON, dt);
         obj.put(PRESSURE_JSON, pressure);
         obj.put(HUMIDITY_JSON, humidity);
@@ -83,9 +88,9 @@ public class Common {
     }
 
     public String getDtAsString(String pattern) {
-        Settings settings = AppData.getSettings();
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, AppData.getSettings().getLocale());
+        sdf.setTimeZone(timeZone);
 
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern, settings.getLocale());
         return sdf.format(dt);
     }
 

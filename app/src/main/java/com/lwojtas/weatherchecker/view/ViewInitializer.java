@@ -14,13 +14,20 @@ import android.widget.TextView;
 import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.city.container.Weather;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
 
 abstract class ViewInitializer {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ViewInitializer.class);
+
     protected TableLayout buildTableLayout(Context context) {
+        LOG.trace("buildTableLayout");
+
         TableLayout tableLayout = new TableLayout(context);
 
         tableLayout.setShrinkAllColumns(true);
@@ -30,6 +37,8 @@ abstract class ViewInitializer {
     }
 
     protected TableRow buildTableRow(Context context, boolean isHeader, boolean isEven) {
+        LOG.trace("buildTableRow");
+
         TableRow tableRow = new TableRow(context);
 
         tableRow.setPadding(0, 0, 0, 4);
@@ -46,6 +55,8 @@ abstract class ViewInitializer {
     }
 
     protected TextView buildTableHeaderTextView(Context context, String text) {
+        LOG.trace("buildTableHeaderTextView");
+
         TextView textView = buildTextView(context, text);
 
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -56,6 +67,8 @@ abstract class ViewInitializer {
     }
 
     protected TextView buildTableRowTextView(Context context, String text) {
+        LOG.trace("buildTableRowTextView");
+
         TextView textView = buildTextView(context, text);
 
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -65,6 +78,8 @@ abstract class ViewInitializer {
     }
 
     protected LinearLayout buildShortHeaderLinearLayout(Context context, List<Weather> weather, String date) throws Exception {
+        LOG.trace("buildShortHeaderLinearLayout");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -93,12 +108,16 @@ abstract class ViewInitializer {
     }
 
     protected LinearLayout buildLongHeaderLinearLayout(Context context, List<Weather> weather, String date, String temp, String rain, String snow) throws Exception {
+        LOG.trace("buildLongHeaderLinearLayout");
+
         LinearLayout linearLayout = buildShortHeaderLinearLayout(context, weather, date);
         linearLayout.addView(buildLongHeaderLinearLayout(context, temp, rain, snow));
         return linearLayout;
     }
 
     private LinearLayout buildWeatherLinearLayout(Context context, Weather weather, float weight) throws Exception {
+        LOG.trace("buildWeatherLinearLayout");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -118,6 +137,8 @@ abstract class ViewInitializer {
     }
 
     private ImageView buildNextImageView(Context context, float weight) {
+        LOG.trace("buildNextImageView");
+
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.ic_baseline_arrow_forward_24);
 
@@ -129,6 +150,8 @@ abstract class ViewInitializer {
     }
 
     private LinearLayout buildLongHeaderLinearLayout(Context context, String temp, String rain, String snow) {
+        LOG.trace("buildLongHeaderLinearLayout");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -157,6 +180,8 @@ abstract class ViewInitializer {
     }
 
     private int getImageResourceId(String iconName) throws Exception {
+        LOG.trace("getImageResourceId");
+
         String resourceName;
 
         switch (iconName) {
@@ -194,6 +219,8 @@ abstract class ViewInitializer {
     }
 
     private TextView buildTextView(Context context, String text) {
+        LOG.trace("buildTextView");
+
         TextView textView = new TextView(context);
 
         textView.setText(text);

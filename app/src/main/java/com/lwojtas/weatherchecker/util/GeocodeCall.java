@@ -5,6 +5,8 @@ import com.lwojtas.weatherchecker.model.GeocodeCity;
 import com.lwojtas.weatherchecker.model.Settings;
 
 import org.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -21,6 +23,8 @@ import java.util.concurrent.Callable;
 
 public class GeocodeCall implements Callable<List<GeocodeCity>> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(GeocodeCall.class);
+
     private final String CITY_NAME;
 
     public GeocodeCall(String cityName) {
@@ -29,6 +33,8 @@ public class GeocodeCall implements Callable<List<GeocodeCity>> {
 
     @Override
     public List<GeocodeCity> call() throws Exception {
+        LOG.trace("call");
+
         Settings settings = AppData.getSettings();
 
         URL url = new URL("https://nominatim.openstreetmap.org/search?" +
@@ -57,4 +63,5 @@ public class GeocodeCall implements Callable<List<GeocodeCity>> {
 
         return cities;
     }
+
 }

@@ -1,9 +1,14 @@
 package com.lwojtas.weatherchecker.model;
 
+import com.lwojtas.weatherchecker.util.exception.IllegalNegativeNumberException;
+import com.lwojtas.weatherchecker.util.exception.IllegalNegativeOrZeroNumberException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
+
+import ch.qos.logback.classic.Level;
 
 public class Settings {
 
@@ -89,6 +94,8 @@ public class Settings {
     private Integer threadPool;
     private final String APP_ID_JSON = "appID";
     private String appId;
+    private final String LOG_MODE_JSON = "logMode";
+    private Level logMode;
 
     public Settings() {
         units = Units.METRIC;
@@ -100,6 +107,7 @@ public class Settings {
         timeout = 10000;
         threadPool = 10;
         appId = "";
+        logMode = Level.OFF;
     }
 
     public Settings(JSONObject obj) throws JSONException {
@@ -132,6 +140,9 @@ public class Settings {
 
             if (obj.has(APP_ID_JSON))
                 appId = obj.getString(APP_ID_JSON);
+
+            if (obj.has(LOG_MODE_JSON))
+                logMode = Level.toLevel(obj.getInt(LOG_MODE_JSON));
         }
     }
 
@@ -147,6 +158,7 @@ public class Settings {
         obj.put(TIMEOUT_JSON, timeout);
         obj.put(THREAD_POOL_JSON, threadPool);
         obj.put(APP_ID_JSON, appId);
+        obj.put(LOG_MODE_JSON, logMode.toInt());
 
         return obj;
     }
@@ -200,7 +212,10 @@ public class Settings {
         return String.valueOf(decimals);
     }
 
-    public void setDecimals(Integer decimals) {
+    public void setDecimals(Integer decimals) throws IllegalNegativeNumberException {
+        if (decimals < 0)
+            throw new IllegalNegativeNumberException();
+
         this.decimals = decimals;
     }
 
@@ -212,7 +227,10 @@ public class Settings {
         return String.valueOf(preciseDecimals);
     }
 
-    public void setPreciseDecimals(Integer preciseDecimals) {
+    public void setPreciseDecimals(Integer preciseDecimals) throws IllegalNegativeNumberException {
+        if (preciseDecimals < 0)
+            throw new IllegalNegativeNumberException();
+
         this.preciseDecimals = preciseDecimals;
     }
 
@@ -220,7 +238,10 @@ public class Settings {
         return weatherActualThreshold;
     }
 
-    public void setWeatherActualThreshold(Integer weatherActualThreshold) {
+    public void setWeatherActualThreshold(Integer weatherActualThreshold) throws IllegalNegativeNumberException {
+        if (weatherActualThreshold < 0)
+            throw new IllegalNegativeNumberException();
+
         this.weatherActualThreshold = weatherActualThreshold;
     }
 
@@ -248,7 +269,10 @@ public class Settings {
         return String.valueOf(timeout);
     }
 
-    public void setTimeout(Integer timeout) {
+    public void setTimeout(Integer timeout) throws IllegalNegativeOrZeroNumberException {
+        if (timeout < 1)
+            throw new IllegalNegativeOrZeroNumberException();
+
         this.timeout = timeout;
     }
 
@@ -260,7 +284,10 @@ public class Settings {
         return String.valueOf(threadPool);
     }
 
-    public void setThreadPool(Integer threadPool) {
+    public void setThreadPool(Integer threadPool) throws IllegalNegativeOrZeroNumberException {
+        if (threadPool < 1)
+            throw new IllegalNegativeOrZeroNumberException();
+
         this.threadPool = threadPool;
     }
 
@@ -270,6 +297,57 @@ public class Settings {
 
     public void setAppId(String appId) {
         this.appId = appId;
+    }
+
+    public Level getLogMode() {
+        return logMode;
+    }
+
+    public Integer getLogModeNum() {
+        if (this.logMode == null)
+            return null;
+        else
+            switch (this.logMode.toInteger()) {
+                case Level.ALL_INT:
+                    return 6;
+                case Level.TRACE_INT:
+                    return 5;
+                case Level.DEBUG_INT:
+                    return 4;
+                case Level.INFO_INT:
+                    return 3;
+                case Level.WARN_INT:
+                    return 2;
+                case Level.ERROR_INT:
+                    return 1;
+                case Level.OFF_INT:
+                default:
+                    return 0;
+            }
+    }
+
+    public void setLogMode(Level logMode) {
+        this.logMode = logMode;
+    }
+
+    public Level formatLogMode(int logMode) {
+        switch (logMode) {
+            case 6:
+                return Level.ALL;
+            case 5:
+                return Level.TRACE;
+            case 4:
+                return Level.DEBUG;
+            case 3:
+                return Level.INFO;
+            case 2:
+                return Level.WARN;
+            case 1:
+                return Level.ERROR;
+            case 0:
+            default:
+                return Level.OFF;
+        }
     }
 
 }

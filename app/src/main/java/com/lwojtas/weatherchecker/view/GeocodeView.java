@@ -11,9 +11,14 @@ import android.widget.TextView;
 import com.lwojtas.weatherchecker.R;
 import com.lwojtas.weatherchecker.model.GeocodeCity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class GeocodeView extends ViewInitializer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(GeocodeView.class);
 
     private final List<GeocodeCity> CITIES;
 
@@ -22,18 +27,24 @@ public class GeocodeView extends ViewInitializer {
     }
 
     public void initialize(Context context, TableLayout tableLayout, EditText latEditText, EditText lonEditText) {
-        tableLayout.removeAllViews();
+        LOG.trace("initialize");
 
-        tableLayout.addView(buildTableHeader(context));
+        if (context != null && tableLayout != null && latEditText != null && lonEditText != null && CITIES != null) {
+            tableLayout.removeAllViews();
 
-        boolean even = false;
-        for (GeocodeCity city : CITIES) {
-            tableLayout.addView(buildTableRow(context, city, even, latEditText, lonEditText));
-            even = !even;
+            tableLayout.addView(buildTableHeader(context));
+
+            boolean even = false;
+            for (GeocodeCity city : CITIES) {
+                tableLayout.addView(buildTableRow(context, city, even, latEditText, lonEditText));
+                even = !even;
+            }
         }
     }
 
     private TableRow buildTableHeader(Context context) {
+        LOG.trace("buildTableHeader");
+
         TableRow row = buildTableRow(context, true, false);
 
         row.addView(buildTableHeaderTextView(context, context.getResources().getString(R.string.city_name)));
@@ -44,6 +55,8 @@ public class GeocodeView extends ViewInitializer {
     }
 
     private TableRow buildTableRow(Context context, final GeocodeCity city, boolean even, final EditText latEditText, final EditText lonEditText) {
+        LOG.trace("buildTableRow");
+
         TableRow row = buildTableRow(context, false, even);
 
         row.addView(buildNameLinearLayout(context, city.getDisplayNameParts()));
@@ -62,6 +75,8 @@ public class GeocodeView extends ViewInitializer {
     }
 
     private LinearLayout buildNameLinearLayout(Context context, List<String> parts) {
+        LOG.trace("buildNameLinearLayout");
+
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 

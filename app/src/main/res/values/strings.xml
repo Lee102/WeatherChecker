@@ -20,7 +20,7 @@
     </string-array>
 
     <string name="about_title">About</string>
-    <string name="about" formatted="false" translatable="false">WeatherChecker\nver beta build 09.10.2020\nAuthor Łukasz Wojtas</string>
+    <string name="about" formatted="false" translatable="false">WeatherChecker\nver 1.0 build 09.10.2020\nAuthor Łukasz Wojtas</string>
 
     <string name="weather_current">Current</string>
     <string name="weather_daily">Daily</string>
@@ -66,6 +66,8 @@
     <string name="city_lon">Longitude</string>
     <string name="city_save">Save</string>
     <string name="city_search">Search</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Lat/Lon cannot exceed 180°</string>
+    <string name="city_double_parse_error_message">Lat/Lon parsing error</string>
     <string name="city_save_error_message">Fill fields name, lat and lon</string>
     <string name="city_search_error_message">City search error</string>
 
@@ -74,7 +76,8 @@
     <string name="settings_decimals">Decimals</string>
     <string name="settings_precise_decimals">Precise decimals</string>
     <string name="settings_weather_actual_threshold">Weather out of date after</string>
-    <string name="settings_weather_actual_threshold_end">hours</string>
+    <string name="settings_weather_actual_threshold_end">hour</string>
+    <string name="settings_weather_actual_threshold_end_plural">hours</string>
     <string name="settings_language">Language</string>
     <string name="settings_update_mode">Update on startup</string>
     <string name="settings_update_mode_on">On</string>
@@ -82,7 +85,11 @@
     <string name="settings_timeout" translatable="false">Timeout</string>
     <string name="settings_thread_pool" translatable="false">Thread pool</string>
     <string name="settings_app_id" translatable="false">App ID</string>
+    <string name="settings_log_mode">Log mode</string>
     <string name="settings_save">Save</string>
+    <string name="settings_negative_number_error_message">"Decimals"/"Precise decimals"/"Weather actual threshold" cannot be lower than 0</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread pool" cannot be lower than 1</string>
+    <string name="settings_save_error_message">Settings saving error</string>
     <string-array name="settings_units_array">
         <item>Standard (K + m/s)</item>
         <item>Metric (°C + m/s)</item>
@@ -91,5 +98,14 @@
     <string-array name="settings_language_array">
         <item>English</item>
         <item>Polish</item>
+    </string-array>
+    <string-array name="settings_log_mode_array" translatable="false">
+        <item>OFF</item>
+        <item>ERROR</item>
+        <item>WARN</item>
+        <item>INFO</item>
+        <item>DEBUG</item>
+        <item>TRACE</item>
+        <item>ALL</item>
     </string-array>
 </resources>
