@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>Да</item>
+        <item>Нет</item>
+    </string-array>
+
+    <string name="file_save_error_message">Ошибка при сохранении данных</string>
+    <string name="file_load_error_message">Ошибка при загрузке данных</string>
+    <string name="network_connection_error_message">Ошибка сетевого подключения</string>
+
+    <string name="main_update_city_error_message">Ошибка обновления погоды</string>
+    <string name="main_choose_action_dialog">Выбрать действие</string>
+    <string name="main_confirmation_dialog">Ты уверен?</string>
+    <string-array name="main_city_button_array">
+        <item>Обновление погоды</item>
+        <item>Редактировать город</item>
+        <item>Удалить город</item>
+    </string-array>
+
+    <string name="about_title">О сайте</string>
+
+    <string name="weather_current">Текущий</string>
+    <string name="weather_daily">Ежедневно</string>
+    <string name="weather_hourly">Почасовой</string>
+    <string name="weather_minutely">Минуточку</string>
+    <string name="weather_current_title">Текущая погода</string>
+    <string name="weather_daily_title">Ежедневная Погода</string>
+    <string name="weather_hourly_title">Почасовая погода</string>
+    <string name="weather_minutely_title">Минутная погода</string>
+    <string name="weather_on_create_error_message">Ошибка инициализации вида на город</string>
+    <string name="weather_daily_on_click_error_message">Ошибка при попытке изменить рухнувший/расширенный вид в ежедневной погоде</string>
+    <string name="weather_hourly_on_click_error_message">Ошибка при попытке изменить рухнувший/расширенный вид в почасовой погоде</string>
+
+    <string name="weather_feels_like">Похоже, что</string>
+    <string name="weather_rain">Дождь</string>
+    <string name="weather_snow">Снег</string>
+    <string name="weather_date">Дата</string>
+    <string name="weather_sunrise">Восход солнца</string>
+    <string name="weather_sunset">Закат</string>
+    <string name="weather_uvi">УФ-индекс</string>
+    <string name="weather_visibility">Видимость</string>
+    <string name="weather_pressure">Давление</string>
+    <string name="weather_humidity">Влажность</string>
+    <string name="weather_dew_point">Температура конденсации</string>
+    <string name="weather_clouds">Облака</string>
+    <string name="weather_pop">Вероятность осадков</string>
+    <string name="weather_precipitation">Осадки [mm]</string>
+    <string name="weather_wind_speed">Скорость ветра</string>
+    <string name="weather_wind_gust">Порыв ветра</string>
+    <string name="weather_wind_deg">Направление ветра</string>
+    <string name="weather_temp_day">День</string>
+    <string name="weather_temp_night">Ночь</string>
+    <string name="weather_temp_eve">Ева</string>
+    <string name="weather_temp_morn">Доброе утро</string>
+
+    <string name="city_title_new">Новый город</string>
+    <string name="city_title_modify">Модифицировать город</string>
+    <string name="city_name">Имя</string>
+    <string name="city_lat">Локатор</string>
+    <string name="city_lon">Долгота</string>
+    <string name="city_save">Сохранить</string>
+    <string name="city_search">Поиск</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Лат/лон не может превышать 180°</string>
+    <string name="city_double_parse_error_message">ошибка синтаксического анализа</string>
+    <string name="city_save_error_message">Заполните поля с именем, лат и длиной</string>
+    <string name="city_search_error_message">Ошибка поиска по городу</string>
+
+    <string name="settings_title">Настройки</string>
+    <string name="settings_units">Единицы</string>
+    <string name="settings_decimals">Децималы</string>
+    <string name="settings_precise_decimals">Точные цифры</string>
+    <string name="settings_weather_actual_threshold">Погода устарела после</string>
+    <string name="settings_weather_actual_threshold_end">час</string>
+    <string name="settings_weather_actual_threshold_end_plural">часы</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_update_mode">Обновление при запуске</string>
+    <string name="settings_update_mode_on">На сайте</string>
+    <string name="settings_update_mode_off">Офф</string>
+    <string name="settings_log_mode">Режим журнала</string>
+    <string name="settings_save">Сохранить</string>
+    <string name="settings_negative_number_error_message">"Децималы"/"Точные децималы"/"Действительный порог погоды" не может быть ниже 0</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" не может быть меньше, чем 1</string>
+    <string name="settings_save_error_message">Ошибка сохранения настроек</string>
+    <string-array name="settings_units_array">
+        <item>Стандартный (K + m/s)</item>
+        <item>Метрика (°C + m/s)</item>
+        <item>Императорский (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>китайский язык</item>
+        <item>голландский</item>
+        <item>английский язык</item>
+        <item>французский</item>
+        <item>немецкий язык</item>
+        <item>итальянский</item>
+        <item>Японский</item>
+        <item>польский</item>
+        <item>Португальский</item>
+        <item>русский</item>
+        <item>испанский</item>
+    </string-array>
+</resources>

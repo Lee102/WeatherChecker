@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>噫</item>
+        <item>否</item>
+    </string-array>
+
+    <string name="file_save_error_message">データ保存中のエラー</string>
+    <string name="file_load_error_message">データ読み込み中のエラー</string>
+    <string name="network_connection_error_message">ネットワーク接続エラー</string>
+
+    <string name="main_update_city_error_message">天気更新エラー</string>
+    <string name="main_choose_action_dialog">アクションを選択する</string>
+    <string name="main_confirmation_dialog">本当ですか？</string>
+    <string-array name="main_city_button_array">
+        <item>天気予報の更新</item>
+        <item>編集都市</item>
+        <item>都市の削除</item>
+    </string-array>
+
+    <string name="about_title">について</string>
+
+    <string name="weather_current">現在の</string>
+    <string name="weather_daily">毎日</string>
+    <string name="weather_hourly">毎時</string>
+    <string name="weather_minutely">微かに</string>
+    <string name="weather_current_title">現在の天気</string>
+    <string name="weather_daily_title">毎日の天気</string>
+    <string name="weather_hourly_title">時間ごとの天気</string>
+    <string name="weather_minutely_title">微細な天気</string>
+    <string name="weather_on_create_error_message">シティビュー初期化エラー</string>
+    <string name="weather_daily_on_click_error_message">毎日の天気で折りたたまれた/拡張されたビューを変更しようとしたときのエラー</string>
+    <string name="weather_hourly_on_click_error_message">毎時天気で折りたたまれた/拡張されたビューを変更しようとしたときのエラー</string>
+
+    <string name="weather_feels_like">のように感じます。</string>
+    <string name="weather_rain">雨</string>
+    <string name="weather_snow">雪</string>
+    <string name="weather_date">日付</string>
+    <string name="weather_sunrise">日の出</string>
+    <string name="weather_sunset">日没</string>
+    <string name="weather_uvi">紫外線指数</string>
+    <string name="weather_visibility">可視性</string>
+    <string name="weather_pressure">圧力</string>
+    <string name="weather_humidity">湿度</string>
+    <string name="weather_dew_point">露点</string>
+    <string name="weather_clouds">雲</string>
+    <string name="weather_pop">降水確率</string>
+    <string name="weather_precipitation">降水量 [mm]</string>
+    <string name="weather_wind_speed">風速</string>
+    <string name="weather_wind_gust">風の突風</string>
+    <string name="weather_wind_deg">風向き</string>
+    <string name="weather_temp_day">日</string>
+    <string name="weather_temp_night">夜</string>
+    <string name="weather_temp_eve">イヴ</string>
+    <string name="weather_temp_morn">朝</string>
+
+    <string name="city_title_new">ニューシティ</string>
+    <string name="city_title_modify">都市の変更</string>
+    <string name="city_name">名前</string>
+    <string name="city_lat">緯度</string>
+    <string name="city_lon">経度</string>
+    <string name="city_save">保存</string>
+    <string name="city_search">検索</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">緯度/経度は180°を超えることはできません</string>
+    <string name="city_double_parse_error_message">緯度/経度構文解析エラー</string>
+    <string name="city_save_error_message">フィールド名、緯度、経度を入力します。</string>
+    <string name="city_search_error_message">都市検索エラー</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_units">単位</string>
+    <string name="settings_decimals">小数</string>
+    <string name="settings_precise_decimals">正確な小数</string>
+    <string name="settings_weather_actual_threshold">後の天気が悪くなった</string>
+    <string name="settings_weather_actual_threshold_end">アワー</string>
+    <string name="settings_weather_actual_threshold_end_plural">じかん</string>
+    <string name="settings_language">言語</string>
+    <string name="settings_update_mode">スタートアップの最新情報</string>
+    <string name="settings_update_mode_on">乗ったままで</string>
+    <string name="settings_update_mode_off">オフ</string>
+    <string name="settings_log_mode">ログモード</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_negative_number_error_message">"小数点以下"/"正確な小数点以下"/"天候の実際の閾値 "は0以下にすることはできません。</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" は1以下にすることはできません。</string>
+    <string name="settings_save_error_message">設定保存エラー</string>
+    <string-array name="settings_units_array">
+        <item>標準 (K + m/s)</item>
+        <item>メートル (°C + m/s)</item>
+        <item>インペリアル (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>ちゅうごく</item>
+        <item>蘭語</item>
+        <item>英語</item>
+        <item>フレンチ</item>
+        <item>ドイツ語</item>
+        <item>イタリア語</item>
+        <item>にほんご</item>
+        <item>ポーランド語</item>
+        <item>ポルトガル語</item>
+        <item>ロシア語</item>
+        <item>スペイン語</item>
+    </string-array>
+</resources>

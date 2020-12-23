@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>Sí</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="file_save_error_message">Error al guardar los datos</string>
+    <string name="file_load_error_message">Error al cargar los datos</string>
+    <string name="network_connection_error_message">Error de conexión a la red</string>
+
+    <string name="main_update_city_error_message">Error de actualización del tiempo</string>
+    <string name="main_choose_action_dialog">Elija una acción</string>
+    <string name="main_confirmation_dialog">¿Está seguro?</string>
+    <string-array name="main_city_button_array">
+        <item>Actualización del tiempo</item>
+        <item>Editar la ciudad</item>
+        <item>Eliminar la ciudad</item>
+    </string-array>
+
+    <string name="about_title">Acerca de</string>
+
+    <string name="weather_current">Actual</string>
+    <string name="weather_daily">Diario</string>
+    <string name="weather_hourly">Cada hora</string>
+    <string name="weather_minutely">Minuciosamente</string>
+    <string name="weather_current_title">El tiempo actual</string>
+    <string name="weather_daily_title">El tiempo diario</string>
+    <string name="weather_hourly_title">Tiempo por hora</string>
+    <string name="weather_minutely_title">Minuto de tiempo</string>
+    <string name="weather_on_create_error_message">Error de inicialización de la vista de la ciudad</string>
+    <string name="weather_daily_on_click_error_message">Error al intentar cambiar la vista colapsada/ampliada en el clima diario</string>
+    <string name="weather_hourly_on_click_error_message">Error al intentar cambiar la vista colapsada/ampliada en el clima de cada hora</string>
+
+    <string name="weather_feels_like">Se siente como</string>
+    <string name="weather_rain">Lluvia</string>
+    <string name="weather_snow">Nieve</string>
+    <string name="weather_date">Fecha</string>
+    <string name="weather_sunrise">Amanecer</string>
+    <string name="weather_sunset">Atardecer</string>
+    <string name="weather_uvi">Índice UV</string>
+    <string name="weather_visibility">Visibilidad</string>
+    <string name="weather_pressure">Presión</string>
+    <string name="weather_humidity">Humedad</string>
+    <string name="weather_dew_point">Punto de rocío</string>
+    <string name="weather_clouds">Nubes</string>
+    <string name="weather_pop">Probabilidad de precipitación</string>
+    <string name="weather_precipitation">Precipitación [mm]</string>
+    <string name="weather_wind_speed">La velocidad del viento</string>
+    <string name="weather_wind_gust">Ráfagas de viento</string>
+    <string name="weather_wind_deg">Dirección del viento</string>
+    <string name="weather_temp_day">Día</string>
+    <string name="weather_temp_night">Noche</string>
+    <string name="weather_temp_eve">Eve</string>
+    <string name="weather_temp_morn">Por la mañana</string>
+
+    <string name="city_title_new">Ciudad nueva</string>
+    <string name="city_title_modify">Modificar la ciudad</string>
+    <string name="city_name">Nombre</string>
+    <string name="city_lat">Latitud</string>
+    <string name="city_lon">Longitud</string>
+    <string name="city_save">Guardar</string>
+    <string name="city_search">Busca en</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Lat/Lon no puede exceder los 180°</string>
+    <string name="city_double_parse_error_message">Error de análisis de Lat/Lon</string>
+    <string name="city_save_error_message">Rellenar los campos nombre, lat y lon</string>
+    <string name="city_search_error_message">Error de búsqueda de la ciudad</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_units">Unidades</string>
+    <string name="settings_decimals">Decimales</string>
+    <string name="settings_precise_decimals">Decimales precisos</string>
+    <string name="settings_weather_actual_threshold">El tiempo está desfasado después de que</string>
+    <string name="settings_weather_actual_threshold_end">hora</string>
+    <string name="settings_weather_actual_threshold_end_plural">horas</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_update_mode">Actualización de la puesta en marcha</string>
+    <string name="settings_update_mode_on">En</string>
+    <string name="settings_update_mode_off">Fuera de</string>
+    <string name="settings_log_mode">Modo de registro</string>
+    <string name="settings_save">Guardar</string>
+    <string name="settings_negative_number_error_message">"Decimales"/"Decimales precisos"/"Umbral real del tiempo" no puede ser inferior a 0</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" no puede ser inferior a 1</string>
+    <string name="settings_save_error_message">Error al guardar los ajustes</string>
+    <string-array name="settings_units_array">
+        <item>Estándar (K + m/s)</item>
+        <item>Métrico (°C + m/s)</item>
+        <item>Imperial (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>Chino</item>
+        <item>Holandés</item>
+        <item>Inglés</item>
+        <item>Francés</item>
+        <item>Alemán</item>
+        <item>Italiano</item>
+        <item>Japonés</item>
+        <item>Polaco</item>
+        <item>Portugués</item>
+        <item>Ruso</item>
+        <item>Español</item>
+    </string-array>
+</resources>

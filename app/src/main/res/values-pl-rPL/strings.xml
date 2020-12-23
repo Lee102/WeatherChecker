@@ -88,7 +88,16 @@
         <item>Imperialne (°F + mph/h)</item>
     </string-array>
     <string-array name="settings_language_array">
+        <item>Chiński</item>
+        <item>Niderlandzki</item>
         <item>Angielski</item>
+        <item>Francuski</item>
+        <item>Niemiecki</item>
+        <item>Włoski</item>
+        <item>Japoński</item>
         <item>Polski</item>
+        <item>Portugalski</item>
+        <item>Rosyjski</item>
+        <item>Hiszpański</item>
     </string-array>
 </resources>

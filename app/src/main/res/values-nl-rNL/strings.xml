@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>Ja</item>
+        <item>Geen</item>
+    </string-array>
+
+    <string name="file_save_error_message">Fout bij het opslaan van gegevens</string>
+    <string name="file_load_error_message">Fout bij het laden van gegevens</string>
+    <string name="network_connection_error_message">Fout in netwerkverbinding</string>
+
+    <string name="main_update_city_error_message">Fout in de weersupdate</string>
+    <string name="main_choose_action_dialog">Kies een actie</string>
+    <string name="main_confirmation_dialog">Weet je het zeker?</string>
+    <string-array name="main_city_button_array">
+        <item>Weerbericht</item>
+        <item>Bewerk stad</item>
+        <item>Stad verwijderen</item>
+    </string-array>
+
+    <string name="about_title">Over</string>
+
+    <string name="weather_current">Huidige</string>
+    <string name="weather_daily">Dagelijks</string>
+    <string name="weather_hourly">Uurlijks</string>
+    <string name="weather_minutely">Minuutuut</string>
+    <string name="weather_current_title">Huidig weer</string>
+    <string name="weather_daily_title">Dagelijks Weer</string>
+    <string name="weather_hourly_title">Uurlijk weer</string>
+    <string name="weather_minutely_title">Minuutuut. Weer</string>
+    <string name="weather_on_create_error_message">Stadsweergave-initialisatiefout</string>
+    <string name="weather_daily_on_click_error_message">Fout bij het veranderen van het ingestorte/uitgestrekte zicht in het dagelijkse weer</string>
+    <string name="weather_hourly_on_click_error_message">Fout bij het veranderen van het ingestorte/uitgestrekte uitzicht in het weer per uur.</string>
+
+    <string name="weather_feels_like">Voelt als</string>
+    <string name="weather_rain">Regen</string>
+    <string name="weather_snow">Sneeuw</string>
+    <string name="weather_date">Datum</string>
+    <string name="weather_sunrise">Zonsopgang</string>
+    <string name="weather_sunset">Zonsondergang</string>
+    <string name="weather_uvi">UV-index</string>
+    <string name="weather_visibility">Zichtbaarheid</string>
+    <string name="weather_pressure">Druk</string>
+    <string name="weather_humidity">Vochtigheid</string>
+    <string name="weather_dew_point">Dauwpunt</string>
+    <string name="weather_clouds">Wolken</string>
+    <string name="weather_pop">Waarschijnlijkheid van neerslag</string>
+    <string name="weather_precipitation">Neerslag [mm]</string>
+    <string name="weather_wind_speed">Windsnelheid</string>
+    <string name="weather_wind_gust">Windvlaag</string>
+    <string name="weather_wind_deg">Windrichting</string>
+    <string name="weather_temp_day">Dag</string>
+    <string name="weather_temp_night">Nacht</string>
+    <string name="weather_temp_eve">Vooravond</string>
+    <string name="weather_temp_morn">Ochtend</string>
+
+    <string name="city_title_new">Nieuwe stad</string>
+    <string name="city_title_modify">Wijzig stad</string>
+    <string name="city_name">Naam</string>
+    <string name="city_lat">Breedte</string>
+    <string name="city_lon">Lengte</string>
+    <string name="city_save">Bespaar</string>
+    <string name="city_search">Zoeken op</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Bre/Len mag niet meer dan 180° bedragen</string>
+    <string name="city_double_parse_error_message">Bre/Len parsing fout</string>
+    <string name="city_save_error_message">Vul de velden naam, Bre en Len in</string>
+    <string name="city_search_error_message">Fout bij het zoeken naar een stad</string>
+
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_units">Eenheden</string>
+    <string name="settings_decimals">Decimalen</string>
+    <string name="settings_precise_decimals">Nauwkeurige decimalen</string>
+    <string name="settings_weather_actual_threshold">Het weer is achterhaald na</string>
+    <string name="settings_weather_actual_threshold_end">uur</string>
+    <string name="settings_weather_actual_threshold_end_plural">uren</string>
+    <string name="settings_language">Taal</string>
+    <string name="settings_update_mode">Update over het opstarten</string>
+    <string name="settings_update_mode_on">Op</string>
+    <string name="settings_update_mode_off">Uit</string>
+    <string name="settings_log_mode">Logboekstand</string>
+    <string name="settings_save">Bespaar</string>
+    <string name="settings_negative_number_error_message">"Decimalen"/"Nauwkeurige decimalen"/"Weer werkelijke drempel" kan niet lager zijn dan 0</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" kan niet lager zijn dan 1</string>
+    <string name="settings_save_error_message">Fout bij het opslaan van instellingen</string>
+    <string-array name="settings_units_array">
+        <item>Standaard (K + m/s)</item>
+        <item>Metrisch (°C + m/s)</item>
+        <item>Keizerlijk (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>Chinees</item>
+        <item>Nederlands</item>
+        <item>Engels</item>
+        <item>Frans</item>
+        <item>Duits</item>
+        <item>Italiaans</item>
+        <item>Japans</item>
+        <item>Pools</item>
+        <item>Portugees</item>
+        <item>Russisch</item>
+        <item>Spaans</item>
+    </string-array>
+</resources>

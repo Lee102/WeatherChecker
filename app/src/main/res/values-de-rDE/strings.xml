@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>Ja</item>
+        <item>Nein</item>
+    </string-array>
+
+    <string name="file_save_error_message">Fehler beim Speichern von Daten</string>
+    <string name="file_load_error_message">Fehler beim Laden von Daten</string>
+    <string name="network_connection_error_message">Netzwerkverbindungsfehler</string>
+
+    <string name="main_update_city_error_message">Wetter-Aktualisierungsfehler</string>
+    <string name="main_choose_action_dialog">Wählen Sie eine Aktion</string>
+    <string name="main_confirmation_dialog">Sind Sie sicher?</string>
+    <string-array name="main_city_button_array">
+        <item>Wetter-Update</item>
+        <item>Stadt bearbeiten</item>
+        <item>Stadt löschen</item>
+    </string-array>
+
+    <string name="about_title">Über</string>
+
+    <string name="weather_current">Aktuell</string>
+    <string name="weather_daily">Täglich</string>
+    <string name="weather_hourly">Stündlich</string>
+    <string name="weather_minutely">Minutenweise</string>
+    <string name="weather_current_title">Aktuelles Wetter</string>
+    <string name="weather_daily_title">Tägliches Wetter</string>
+    <string name="weather_hourly_title">Stündliches Wetter</string>
+    <string name="weather_minutely_title">Minutengenaues Wetter</string>
+    <string name="weather_on_create_error_message">Initialisierungsfehler der Stadtansicht</string>
+    <string name="weather_daily_on_click_error_message">Fehler beim Versuch, die eingeklappte/ausgeklappte Ansicht bei täglichem Wetter zu ändern</string>
+    <string name="weather_hourly_on_click_error_message">Fehler beim Versuch, die eingeklappte/ausgeklappte Ansicht bei stündlichem Wetter zu ändern</string>
+
+    <string name="weather_feels_like">Fühlt sich an wie</string>
+    <string name="weather_rain">Regen</string>
+    <string name="weather_snow">Schnee</string>
+    <string name="weather_date">Datum</string>
+    <string name="weather_sunrise">Sonnenaufgang</string>
+    <string name="weather_sunset">Sonnenuntergang</string>
+    <string name="weather_uvi">UV-Index</string>
+    <string name="weather_visibility">Sichtbarkeit</string>
+    <string name="weather_pressure">Druck</string>
+    <string name="weather_humidity">Luftfeuchtigkeit</string>
+    <string name="weather_dew_point">Taupunkt</string>
+    <string name="weather_clouds">Wolken</string>
+    <string name="weather_pop">Wahrscheinlichkeit von Niederschlag</string>
+    <string name="weather_precipitation">Niederschlag [mm]</string>
+    <string name="weather_wind_speed">Windgeschwindigkeit</string>
+    <string name="weather_wind_gust">Windböe</string>
+    <string name="weather_wind_deg">Windrichtung</string>
+    <string name="weather_temp_day">Tag</string>
+    <string name="weather_temp_night">Nacht</string>
+    <string name="weather_temp_eve">Vorabend</string>
+    <string name="weather_temp_morn">Vormittag</string>
+
+    <string name="city_title_new">Neue Stadt</string>
+    <string name="city_title_modify">Stadt ändern</string>
+    <string name="city_name">Name</string>
+    <string name="city_lat">Breitengrad</string>
+    <string name="city_lon">Längengrad</string>
+    <string name="city_save">Speichern</string>
+    <string name="city_search">Suche</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">Bre/Län darf 180° nicht überschreiten</string>
+    <string name="city_double_parse_error_message">Bre/Län-Parsing-Fehler</string>
+    <string name="city_save_error_message">Füllen Sie die Felder name, bre und län aus</string>
+    <string name="city_search_error_message">Fehler bei der Stadtsuche</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_units">Einheiten</string>
+    <string name="settings_decimals">Dezimalstellen</string>
+    <string name="settings_precise_decimals">Genaue Dezimalstellen</string>
+    <string name="settings_weather_actual_threshold">Wetter veraltet nach</string>
+    <string name="settings_weather_actual_threshold_end">Stunde</string>
+    <string name="settings_weather_actual_threshold_end_plural">Stunden</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_update_mode">Update beim Start</string>
+    <string name="settings_update_mode_on">Auf</string>
+    <string name="settings_update_mode_off">Aus</string>
+    <string name="settings_log_mode">Log-Modus</string>
+    <string name="settings_save">Speichern</string>
+    <string name="settings_negative_number_error_message">"Dezimalstellen"/"Genaue Dezimalstellen"/"Tatsächliche Wetterschwelle" kann nicht niedriger als 0 sein</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" kann nicht kleiner als 1 sein</string>
+    <string name="settings_save_error_message">Fehler beim Speichern von Einstellungen</string>
+    <string-array name="settings_units_array">
+        <item>Standard (K + m/s)</item>
+        <item>Metrisch (°C + m/s)</item>
+        <item>Kaiserlich (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>Chinesisch</item>
+        <item>Niederländisch</item>
+        <item>Englisch</item>
+        <item>Französisch</item>
+        <item>Deutsch</item>
+        <item>Italienisch</item>
+        <item>Japanisch</item>
+        <item>Polnisch</item>
+        <item>Portugiesisch</item>
+        <item>Russisch</item>
+        <item>Spanisch</item>
+    </string-array>
+</resources>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alert_options">
+        <item>是的</item>
+        <item>没有</item>
+    </string-array>
+
+    <string name="file_save_error_message">保存数据时出错</string>
+    <string name="file_load_error_message">载入数据时出错</string>
+    <string name="network_connection_error_message">网络连接错误</string>
+
+    <string name="main_update_city_error_message">天气更新错误</string>
+    <string name="main_choose_action_dialog">选择一个行动</string>
+    <string name="main_confirmation_dialog">你确定吗?</string>
+    <string-array name="main_city_button_array">
+        <item>天气更新</item>
+        <item>编辑城市</item>
+        <item>删除城市</item>
+    </string-array>
+
+    <string name="about_title">关于我们</string>
+
+    <string name="weather_current">当前</string>
+    <string name="weather_daily">每日</string>
+    <string name="weather_hourly">每小时</string>
+    <string name="weather_minutely">敏锐地</string>
+    <string name="weather_current_title">当前天气</string>
+    <string name="weather_daily_title">每日天气</string>
+    <string name="weather_hourly_title">每小时天气</string>
+    <string name="weather_minutely_title">瞬时天气</string>
+    <string name="weather_on_create_error_message">城市视图初始化错误</string>
+    <string name="weather_daily_on_click_error_message">试图改变每日天气中的折叠/展开视图时出错。</string>
+    <string name="weather_hourly_on_click_error_message">在试图改变每小时天气的折叠/展开视图时出错。</string>
+
+    <string name="weather_feels_like">感觉像</string>
+    <string name="weather_rain">雨</string>
+    <string name="weather_snow">雪</string>
+    <string name="weather_date">日期</string>
+    <string name="weather_sunrise">日出</string>
+    <string name="weather_sunset">夕阳</string>
+    <string name="weather_uvi">紫外线指数</string>
+    <string name="weather_visibility">可见度</string>
+    <string name="weather_pressure">壓力</string>
+    <string name="weather_humidity">湿度</string>
+    <string name="weather_dew_point">露点</string>
+    <string name="weather_clouds">雲</string>
+    <string name="weather_pop">降水概率</string>
+    <string name="weather_precipitation">降水量 [mm]</string>
+    <string name="weather_wind_speed">风速</string>
+    <string name="weather_wind_gust">阵风</string>
+    <string name="weather_wind_deg">风向</string>
+    <string name="weather_temp_day">日</string>
+    <string name="weather_temp_night">夜晚</string>
+    <string name="weather_temp_eve">夏娃</string>
+    <string name="weather_temp_morn">早晨</string>
+
+    <string name="city_title_new">新城</string>
+    <string name="city_title_modify">修改市</string>
+    <string name="city_name">名称</string>
+    <string name="city_lat">纬度</string>
+    <string name="city_lon">经度</string>
+    <string name="city_save">保存</string>
+    <string name="city_search">检索</string>
+    <string name="city_lat_lon_out_of_bounds_error_message">纬度/纬度不能超过180度</string>
+    <string name="city_double_parse_error_message">纬度/纬度解析错误</string>
+    <string name="city_save_error_message">填写姓名、纬度和长度</string>
+    <string name="city_search_error_message">城市搜索错误</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_units">单位</string>
+    <string name="settings_decimals">小数</string>
+    <string name="settings_precise_decimals">精确的小数</string>
+    <string name="settings_weather_actual_threshold">逾期天气</string>
+    <string name="settings_weather_actual_threshold_end">时辰</string>
+    <string name="settings_weather_actual_threshold_end_plural">小时</string>
+    <string name="settings_language">语种</string>
+    <string name="settings_update_mode">关于启动的最新情况</string>
+    <string name="settings_update_mode_on">关于</string>
+    <string name="settings_update_mode_off">关</string>
+    <string name="settings_log_mode">日志模式</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_negative_number_error_message">"小数"/"精确小数"/"天气实际阈值 "不能低于0。</string>
+    <string name="settings_negative_or_zero_number_error_message">"Timeout"/"Thread-Pool" 不能低于1。</string>
+    <string name="settings_save_error_message">设置保存错误</string>
+    <string-array name="settings_units_array">
+        <item>标准 (K + m/s)</item>
+        <item>公制 (°C + m/s)</item>
+        <item>英制 (°F + mph/h)</item>
+    </string-array>
+    <string-array name="settings_language_array">
+        <item>中文</item>
+        <item>荷兰语</item>
+        <item>英文</item>
+        <item>法国人</item>
+        <item>德国</item>
+        <item>意大利</item>
+        <item>日文</item>
+        <item>波兰语</item>
+        <item>葡萄牙语</item>
+        <item>俄语</item>
+        <item>西班牙语</item>
+    </string-array>
+</resources>

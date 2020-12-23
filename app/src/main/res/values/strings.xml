@@ -20,7 +20,7 @@
     </string-array>
 
     <string name="about_title">About</string>
-    <string name="about" formatted="false" translatable="false">WeatherChecker\nver 1.0 build 09.10.2020\nAuthor Łukasz Wojtas</string>
+    <string name="about" formatted="false" translatable="false">WeatherChecker\nver 1.1 beta\nAuthor Łukasz Wojtas</string>
 
     <string name="weather_current">Current</string>
     <string name="weather_daily">Daily</string>
@@ -96,8 +96,17 @@
         <item>Imperial (°F + mph/h)</item>
     </string-array>
     <string-array name="settings_language_array">
+        <item>Chinese</item>
+        <item>Dutch</item>
         <item>English</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>Japanese</item>
         <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Russian</item>
+        <item>Spanish</item>
     </string-array>
     <string-array name="settings_log_mode_array" translatable="false">
         <item>OFF</item>

@@ -190,38 +190,102 @@ public class SettingsActivity extends AppCompatActivity {
         weatherActualThresholdTextView.setText(text);
     }
 
+    public enum LocaleMapper {
+        CHINESE(0, "zh-CN"),
+        DUTCH(1, "nl-NL"),
+        ENGLISH(2, "en"),
+        FRENCH(3, "fr-FR"),
+        GERMAN(4, "de-DE"),
+        ITALIAN(5, "it-IT"),
+        JAPANESE(6, "ja-JP"),
+        POLISH(7, "pl-PL"),
+        PORTUGUESE(8, "pt-PT"),
+        RUSSIAN(9, "ru-RU"),
+        SPANISH(10, "es-ES");
+
+        private final int NUM;
+        private final String TAG;
+
+        LocaleMapper(int num, String tag) {
+            this.NUM = num;
+            this.TAG = tag;
+        }
+
+        public int getNUM() {
+            return NUM;
+        }
+
+        public String getTAG() {
+            return TAG;
+        }
+
+        public static LocaleMapper forNum(int num) {
+            switch (num) {
+                case 0:
+                    return CHINESE;
+                case 1:
+                    return DUTCH;
+                case 3:
+                    return FRENCH;
+                case 4:
+                    return GERMAN;
+                case 5:
+                    return ITALIAN;
+                case 6:
+                    return JAPANESE;
+                case 7:
+                    return POLISH;
+                case 8:
+                    return PORTUGUESE;
+                case 9:
+                    return RUSSIAN;
+                case 10:
+                    return SPANISH;
+                case 2:
+                default:
+                    return ENGLISH;
+            }
+        }
+
+        public static LocaleMapper forTag(String tag) {
+            switch (tag) {
+                case "zh-CN":
+                    return CHINESE;
+                case "nl-NL":
+                    return DUTCH;
+                case "fr-FR":
+                    return FRENCH;
+                case "de-DE":
+                    return GERMAN;
+                case "it-IT":
+                    return ITALIAN;
+                case "ja-JP":
+                    return JAPANESE;
+                case "pl-PL":
+                    return POLISH;
+                case "pt-PT":
+                    return PORTUGUESE;
+                case "ru-RU":
+                    return RUSSIAN;
+                case "es-ES":
+                    return SPANISH;
+                case "en":
+                default:
+                    return ENGLISH;
+            }
+        }
+    }
+
     private void fillLanguageSpinner() {
         LOG.trace("fillLanguageSpinner");
 
-        int selection = 0;
-
-        switch (AppData.getSettings().getLocale().toLanguageTag()) {
-            case "en":
-                break;
-            case "pl":
-            default:
-                selection = 1;
-                break;
-        }
-
-        languageSpinner.setSelection(selection);
+        languageSpinner.setSelection(LocaleMapper.forTag(AppData.getSettings().getLocale().toLanguageTag()).getNUM());
     }
 
     private Locale getLanguageSpinnerValue() {
         LOG.trace("getLanguageSpinnerValue");
 
-        Locale locale = null;
-
-        switch (languageSpinner.getSelectedItemPosition()) {
-            case 0:
-                locale = Locale.ENGLISH;
-                break;
-            case 1:
-                locale = Locale.forLanguageTag("pl");
-                break;
-        }
-
-        return locale;
+        return Locale.forLanguageTag(LocaleMapper.forNum(languageSpinner.getSelectedItemPosition()).getTAG());
     }
 
 }
